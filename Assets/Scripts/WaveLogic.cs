@@ -25,9 +25,12 @@ public class WaveLogic : MonoBehaviour {
 	private void Awake()
 	{
 		castleHealth = castleMaxHealth;
-	}
+        #region LogWarning
+        Debug.LogWarning("Please fix the `waitTime` variable");
+        #endregion
+    }
 
-	private void Update()
+    private void Update()
 	{
 		castleHealth = Mathf.Clamp(castleHealth, 0f, castleMaxHealth);
 
@@ -54,9 +57,13 @@ public class WaveLogic : MonoBehaviour {
 
 	IEnumerator enemySpawnTime(int _waveNumber)
 	{
-		float waitTime = Random.Range(.1f,((waveNumber + 5) - waveNumber));
+        //This does Not work
+		float waitTime = (Random.Range(0, (Mathf.Pow(waveNumber, 1/2))));
+        #region Debug
+        Debug.Log("Wavenumber =" + " " + waveNumber + "  " + "waitTime = "+" "+ (waitTime.ToString("F2")));
 
-		yield return new WaitForSeconds(waitTime);
+        #endregion
+        yield return new WaitForSeconds(waitTime);
 
 
 	}
