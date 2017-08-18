@@ -4,13 +4,12 @@ using UnityEngine;
 
 public class WaveLogic : MonoBehaviour {
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
-	}
+	#region Variables
+	public int castleHealth = 100;
+	public int currency = 100;
+	private int enemyCount;
+	private int waveReward;
+	#endregion
+
+
 }
