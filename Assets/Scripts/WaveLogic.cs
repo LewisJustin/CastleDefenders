@@ -18,12 +18,9 @@ public class WaveLogic : MonoBehaviour {
 	[SerializeField] private Text waveNumberText;
 	[SerializeField] private Text currencyText;
 	[SerializeField] private RectTransform castleHealthFill;
+	[SerializeField] private GameObject enemy01Prefab;
+	[SerializeField] private GameObject enemySpawnPoint;
 	#endregion
-
-	private void Start()
-	{
-		
-	}
 
 	private void Awake()
 	{
@@ -44,5 +41,23 @@ public class WaveLogic : MonoBehaviour {
 	private void SetCastleHealthFill(float _amount)
 	{
 		castleHealthFill.localScale = new Vector3(_amount, 1f);
+	}
+
+	public void StartWave()
+	{
+		waveNumber++;
+
+		castleHealth = castleMaxHealth;
+
+		StartCoroutine(enemySpawnTime(waveNumber));
+	}
+
+	IEnumerator enemySpawnTime(int _waveNumber)
+	{
+		float waitTime = Random.Range(.1f,((waveNumber + 5) - waveNumber));
+
+		yield return new WaitForSeconds(waitTime);
+
+
 	}
 }
