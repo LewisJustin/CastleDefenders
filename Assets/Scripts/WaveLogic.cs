@@ -1,30 +1,44 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WaveLogic : MonoBehaviour {
 
 	#region Variables
-	private float castleMaxHealth = 100;
+	private int castleMaxHealth = 100;
 	public float castleHealth;
 	public int currency = 100;
 	private int enemyCount;
 	private int waveReward;
+	private int waveNumber;
 	#endregion
 
 	#region GameObjectReferences
-
-	[SerializeField] RectTransform castleHealthFill;
+	[SerializeField] private Text waveNumberText;
+	[SerializeField] private Text currencyText;
+	[SerializeField] private RectTransform castleHealthFill;
 	#endregion
 
 	private void Start()
+	{
+		
+	}
+
+	private void Awake()
 	{
 		castleHealth = castleMaxHealth;
 	}
 
 	private void Update()
 	{
+		castleHealth = Mathf.Clamp(castleHealth, 0f, castleMaxHealth);
+
 		SetCastleHealthFill(castleHealth/castleMaxHealth);
+
+		currencyText.text = currency.ToString();
+
+		waveNumberText.text = waveNumber.ToString();
 	}
 
 	private void SetCastleHealthFill(float _amount)
