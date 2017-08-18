@@ -11,6 +11,9 @@ public class WaveLogic : MonoBehaviour {
 	private int waveReward;
 	#endregion
 
+	#region GameObjectReferences
+	
+	#endregion
 
 
 }
