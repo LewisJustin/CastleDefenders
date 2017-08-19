@@ -30,9 +30,9 @@ public class GameLogic : MonoBehaviour {
 
 		SetCastleHealthFill(castleHealth/castleMaxHealth);
 
-		currencyText.text = currency.ToString();
+		currencyText.text = "Gold: " + currency.ToString();
 
-		waveNumberText.text = waveNumber.ToString();
+		waveNumberText.text = "Wave: " + waveNumber.ToString();
 	}
 
 	private void SetCastleHealthFill(float _amount)
