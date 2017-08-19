@@ -12,8 +12,9 @@ public class WaveLogic : MonoBehaviour {
 	private int enemyCount;
 	private int waveReward;
 	private int waveNumber;
-    public int roundTimer;
-    [SerializeField]private int StartTimer;
+    public int roundTimer = 0;
+    private bool AllowNewTimer = true;
+    [SerializeField]private int StartTime;
 	#endregion
 
 	#region GameObjectReferences
@@ -26,18 +27,29 @@ public class WaveLogic : MonoBehaviour {
 
 	private void Awake()
 	{
+        //Makes sure the CastleHealth is always max when you start the game
 		castleHealth = castleMaxHealth;
     }
 
     private void Update()
 	{
-		castleHealth = Mathf.Clamp(castleHealth, 0f, castleMaxHealth);
+        #region CastleHealth
+        castleHealth = Mathf.Clamp(castleHealth, 0f, castleMaxHealth);
+        SetCastleHealthFill(castleHealth/castleMaxHealth);
+        #endregion
+        currencyText.text = currency.ToString();
+        waveNumberText.text = waveNumber.ToString();
 
-		SetCastleHealthFill(castleHealth/castleMaxHealth);
 
-		currencyText.text = currency.ToString();
-
-		waveNumberText.text = waveNumber.ToString();
+        //checks if we can start new timer
+        if (roundTimer > 0)
+        {
+            AllowNewTimer = false;
+        }
+        else if(roundTimer == 0)
+        {
+            AllowNewTimer = true;
+        }
 	}
 
 	private void SetCastleHealthFill(float _amount)
@@ -47,15 +59,27 @@ public class WaveLogic : MonoBehaviour {
 
 	public void StartWave()
 	{
-        roundTimer = StartTimer;
-        StartCoroutine(Timer());
 
+        if (AllowNewTimer == true)
+        {
+            StartCoroutine(Timer());
+        }
+
+        //Makes sure the timer resets everytime we start new wave
+        roundTimer = StartTime;
+
+
+       
         waveNumber++;
 
+
+        //Gives the castle max health when we start new wave
 		castleHealth = castleMaxHealth;
 
 		StartCoroutine(enemySpawnTime(waveNumber));
 	}
+
+
 
 	IEnumerator enemySpawnTime(int _waveNumber)
 	{
@@ -74,18 +98,20 @@ public class WaveLogic : MonoBehaviour {
         
 	}
 
-    private void SpawnEnemy()
-    {
-        Debug.Log("Spawn Enemy");
-    
-    }
-
     IEnumerator Timer()
     {
-        for(int i = 0; i < roundTimer;)
+
+        for (int i = 0; i < roundTimer;)
         {
             roundTimer--;
             yield return new WaitForSeconds(1);
         }
+    }
+
+    private void SpawnEnemy()
+    {
+        //ENEMY SPAWN SCRIPT GOES HERE
+        Debug.Log("Spawn Enemy");
+
     }
 }
