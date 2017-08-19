@@ -15,21 +15,30 @@ public class WaveLogic : MonoBehaviour {
     public int roundTimer = 0;
     private bool AllowNewTimer = true;
     [SerializeField]private int StartTime;
-	#endregion
+    #endregion
 
-	#region GameObjectReferences
-	[SerializeField] private Text waveNumberText;
+
+    #region GameObjectReferences
+    [SerializeField] private Text waveNumberText;
 	[SerializeField] private Text currencyText;
 	[SerializeField] private RectTransform castleHealthFill;
 	[SerializeField] private GameObject enemy01Prefab;
 	[SerializeField] private GameObject enemySpawnPoint;
-	#endregion
+    [SerializeField] private AudioSource WaveEndTune;
+    #endregion
 
-	private void Awake()
+
+    private void Start()
+    {
+        WaveEndTune = GetComponent<AudioSource>();
+        WaveEndTune.mute = true;
+    }
+    private void Awake()
 	{
+
         //Makes sure the CastleHealth is always max when you start the game
-		castleHealth = castleMaxHealth;
-        
+        castleHealth = castleMaxHealth;
+                
         
     }
 
@@ -49,6 +58,8 @@ public class WaveLogic : MonoBehaviour {
         {
             //Timer and wave is still going
             AllowNewTimer = false;
+
+            WaveEndTune.mute = false;
         }
         else if(roundTimer == 0)
         {
@@ -56,9 +67,9 @@ public class WaveLogic : MonoBehaviour {
             AllowNewTimer = true;
 
             //Plays the WaveEndTune
-            AudioSource WaveEndTune = GetComponent<AudioSource>();
+            
             WaveEndTune.Play();
-            //Needs Fix
+            
         }
 	}
 
