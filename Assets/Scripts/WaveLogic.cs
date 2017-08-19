@@ -59,7 +59,7 @@ public class WaveLogic : MonoBehaviour {
 
 	public void StartWave()
 	{
-
+        
         if (AllowNewTimer == true)
         {
             roundTimer = StartTime;
