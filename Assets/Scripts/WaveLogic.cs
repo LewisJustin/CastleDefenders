@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+using UnityEngine.Audio;
 public class WaveLogic : MonoBehaviour {
 
 	#region Variables
@@ -29,7 +29,10 @@ public class WaveLogic : MonoBehaviour {
 	{
         //Makes sure the CastleHealth is always max when you start the game
 		castleHealth = castleMaxHealth;
+        
+        
     }
+
 
     private void Update()
 	{
@@ -44,11 +47,18 @@ public class WaveLogic : MonoBehaviour {
         //checks if we can start new timer
         if (roundTimer > 1)
         {
+            //Timer and wave is still going
             AllowNewTimer = false;
         }
         else if(roundTimer == 0)
         {
+            //Timer and wave has ended
             AllowNewTimer = true;
+
+            //Plays the WaveEndTune
+            AudioSource WaveEndTune = GetComponent<AudioSource>();
+            WaveEndTune.Play();
+            //Needs Fix
         }
 	}
 
