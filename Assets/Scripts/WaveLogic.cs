@@ -12,6 +12,8 @@ public class WaveLogic : MonoBehaviour {
 	private int enemyCount;
 	private int waveReward;
 	private int waveNumber;
+    public int roundTimer;
+    [SerializeField]private int StartTimer;
 	#endregion
 
 	#region GameObjectReferences
@@ -25,9 +27,6 @@ public class WaveLogic : MonoBehaviour {
 	private void Awake()
 	{
 		castleHealth = castleMaxHealth;
-        #region LogWarning
-        Debug.LogWarning("Please fix the `waitTime` variable");
-        #endregion
     }
 
     private void Update()
@@ -48,7 +47,10 @@ public class WaveLogic : MonoBehaviour {
 
 	public void StartWave()
 	{
-		waveNumber++;
+        roundTimer = StartTimer;
+        StartCoroutine(Timer());
+
+        waveNumber++;
 
 		castleHealth = castleMaxHealth;
 
@@ -57,14 +59,33 @@ public class WaveLogic : MonoBehaviour {
 
 	IEnumerator enemySpawnTime(int _waveNumber)
 	{
-        //This does Not work
-		float waitTime = (Random.Range(0, (Mathf.Pow(waveNumber, 1/2))));
-        #region Debug
-        Debug.Log("Wavenumber =" + " " + waveNumber + "  " + "waitTime = "+" "+ (waitTime.ToString("F2")));
 
-        #endregion
-        yield return new WaitForSeconds(waitTime);
+        for (int i = 0; i < roundTimer;) {
+            SpawnEnemy();
 
+            //waitTime
+            float waitTime = (Random.Range(0.1f, 10 / waveNumber));
+            #region Debug
+            Debug.Log("Wavenumber =" + " " + waveNumber + "  " + "waitTime = " + " " + (waitTime.ToString("F2")));
 
+            #endregion
+            yield return new WaitForSeconds(waitTime);
+        }
+        
 	}
+
+    private void SpawnEnemy()
+    {
+        Debug.Log("Spawn Enemy");
+    
+    }
+
+    IEnumerator Timer()
+    {
+        for(int i = 0; i < roundTimer;)
+        {
+            roundTimer--;
+            yield return new WaitForSeconds(1);
+        }
+    }
 }

@@ -1402,6 +1402,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   castleHealth: 100
   currency: 100
+  roundTimer: 100
+  StartTimer: 50
   waveNumberText: {fileID: 1705444847}
   currencyText: {fileID: 1459328781}
   castleHealthFill: {fileID: 574084281}
