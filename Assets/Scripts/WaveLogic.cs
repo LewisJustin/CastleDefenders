@@ -42,7 +42,7 @@ public class WaveLogic : MonoBehaviour {
 
 
         //checks if we can start new timer
-        if (roundTimer > 0)
+        if (roundTimer > 1)
         {
             AllowNewTimer = false;
         }
@@ -62,7 +62,12 @@ public class WaveLogic : MonoBehaviour {
 
         if (AllowNewTimer == true)
         {
+            roundTimer = StartTime;
             StartCoroutine(Timer());
+        }
+        else if(AllowNewTimer == false)
+        {
+            roundTimer = StartTime;
         }
 
         //Makes sure the timer resets everytime we start new wave
