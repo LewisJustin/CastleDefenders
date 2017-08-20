@@ -11,10 +11,11 @@ public class WaveSpawner : MonoBehaviour {
 	public class Wave
 	{
 		public string name;
-		public Transform[] enemy;
 		public int count;
 		public float rate;
 	}
+
+	public Transform[] enemy;
 
 	private int numberOfTimesLooped = 0;
 
@@ -96,7 +97,7 @@ public class WaveSpawner : MonoBehaviour {
 
 		for (int i = 0; i < _wave.count; i++)
 		{
-			SpawnEnemy(_wave.enemy[numberOfTimesLooped]);
+			SpawnEnemy(enemy[numberOfTimesLooped]);
 			yield return new WaitForSeconds(1f / _wave.rate);
 		}
 
