@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(GameLogic))]
 public class WaveSpawner : MonoBehaviour {
 
 	public enum SpawnState { SPAWNING, WAITING, COUNTING}
@@ -10,18 +11,20 @@ public class WaveSpawner : MonoBehaviour {
 	public class Wave
 	{
 		public string name;
-		public Transform enemy;
+		public Transform[] enemy;
 		public int count;
 		public float rate;
 	}
+
+	private int numberOfTimesLooped = 0;
 
 	public Wave[] waves;
 	private int nextWave = 0;
 
 	public Transform[] spawnPoints;
 
-	public float timeBetweenWaves = 5f;
-	private float waveCountdown;
+	//public float timeBetweenWaves = 0f;
+	//private float waveCountdown;
 
 	private float searchCountdown = 1f;
 
@@ -29,7 +32,7 @@ public class WaveSpawner : MonoBehaviour {
 
 	private void Start()
 	{
-		waveCountdown = timeBetweenWaves;
+		//waveCountdown = timeBetweenWaves;
 
 		if (spawnPoints.Length == 0)
 		{
@@ -52,17 +55,24 @@ public class WaveSpawner : MonoBehaviour {
 			}
 		}
 
-		if(waveCountdown <= 0)
-		{
-			if(state != SpawnState.SPAWNING)
-			{
-				StartCoroutine(SpawnWave(waves[nextWave]));
-			}
-		}
-		else
-		{
-			waveCountdown -= Time.deltaTime;
-		}
+		//if(waveCountdown <= 0)
+		//{
+			//void StartWave()
+			//{
+			///	StartCoroutine(SpawnWave(waves[nextWave]));
+			//}
+		//}
+		//else
+		//{
+			//waveCountdown -= Time.deltaTime;
+		//}
+	}
+	
+	public void StartWave()
+	{
+		StartCoroutine(SpawnWave(waves[nextWave]));
+
+		GetComponent<GameLogic>().waveNumber++;
 	}
 
 	bool EnemyIsAlive()
@@ -86,7 +96,7 @@ public class WaveSpawner : MonoBehaviour {
 
 		for (int i = 0; i < _wave.count; i++)
 		{
-			SpawnEnemy(_wave.enemy);
+			SpawnEnemy(_wave.enemy[numberOfTimesLooped]);
 			yield return new WaitForSeconds(1f / _wave.rate);
 		}
 
@@ -98,11 +108,12 @@ public class WaveSpawner : MonoBehaviour {
 	void WaveCompleted()
 	{
 		state = SpawnState.COUNTING;
-		waveCountdown = timeBetweenWaves;
+		//waveCountdown = timeBetweenWaves;
 
 		if(nextWave + 1 > waves.Length - 1)
 		{
 			nextWave = 0;
+			numberOfTimesLooped++;
 		}
 		else
 		{
