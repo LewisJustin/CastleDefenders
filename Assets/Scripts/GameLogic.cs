@@ -29,6 +29,11 @@ public class GameLogic : MonoBehaviour {
 	{
 		castleHealth = Mathf.Clamp(castleHealth, 0f, castleMaxHealth);
 
+		if (castleHealth<=0)
+		{
+			die(waveNumber);
+		}
+
 		SetCastleHealthFill(castleHealth/castleMaxHealth);
 
 		currencyText.text = "Gold: " + currency.ToString();
@@ -44,5 +49,10 @@ public class GameLogic : MonoBehaviour {
 	public void castleTakeDamage(int damage)
 	{
 		castleHealth -= (damage - castleArmor);
+	}
+
+	private void die(int _waveNumber)
+	{
+		Debug.Log("Died on wave " + _waveNumber);
 	}
 }

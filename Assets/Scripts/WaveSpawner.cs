@@ -5,19 +5,19 @@ using UnityEngine;
 [RequireComponent(typeof(GameLogic))]
 public class WaveSpawner : MonoBehaviour {
 
-	public enum SpawnState { SPAWNING, WAITING, COUNTING}
+	public enum SpawnState {SPAWNING, WAITING}
 
 	[System.Serializable]
 	public class Wave
 	{
-		public string name;
+		//public string name;
 		public int count;
 		public float rate;
 	}
 
 	public Transform[] enemy;
 
-	private int numberOfTimesLooped = 0;
+	private int numberOfTimesLooped;
 
 	public Wave[] waves;
 	private int nextWave = 0;
@@ -29,7 +29,7 @@ public class WaveSpawner : MonoBehaviour {
 
 	private float searchCountdown = 1f;
 
-	private SpawnState state = SpawnState.COUNTING;
+	private SpawnState state = SpawnState.WAITING;
 
 	private void Start()
 	{
@@ -40,6 +40,11 @@ public class WaveSpawner : MonoBehaviour {
 			Debug.LogError("No enemy spawnpoints");
 		}
 
+	}
+
+	private void Awake()
+	{
+		numberOfTimesLooped = 0;
 	}
 
 	private void Update()
@@ -71,9 +76,17 @@ public class WaveSpawner : MonoBehaviour {
 	
 	public void StartWave()
 	{
-		StartCoroutine(SpawnWave(waves[nextWave]));
 
-		GetComponent<GameLogic>().waveNumber++;
+
+		if (GameObject.Find("Enemy") == false)
+			state = SpawnState.WAITING;
+
+		if (state == SpawnState.WAITING)
+		{
+			StartCoroutine(SpawnWave(waves[nextWave]));
+
+			GetComponent<GameLogic>().waveNumber++;
+		}
 	}
 
 	bool EnemyIsAlive()
@@ -97,18 +110,17 @@ public class WaveSpawner : MonoBehaviour {
 
 		for (int i = 0; i < _wave.count; i++)
 		{
+			//Debug.Log(numberOfTimesLooped);
 			SpawnEnemy(enemy[numberOfTimesLooped]);
-			yield return new WaitForSeconds(1f / _wave.rate);
+			yield return new WaitForSeconds(1f / Random.Range(_wave.rate-.2f, _wave.rate+.2f));
 		}
-
-		state = SpawnState.WAITING;
 
 		yield break;
 	}
 
 	void WaveCompleted()
 	{
-		state = SpawnState.COUNTING;
+		state = SpawnState.WAITING;
 		//waveCountdown = timeBetweenWaves;
 
 		if(nextWave + 1 > waves.Length - 1)
@@ -125,7 +137,8 @@ public class WaveSpawner : MonoBehaviour {
 	void SpawnEnemy (Transform _enemy)
 	{
 		Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
-		Instantiate(_enemy, _sp.position, _sp.rotation);
+		Transform newObject = Instantiate(_enemy, _sp.position, _sp.rotation);
+		newObject.name = "Enemy";
 	}
 
 }
