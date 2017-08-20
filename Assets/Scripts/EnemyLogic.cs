@@ -6,8 +6,8 @@ public class EnemyLogic : MonoBehaviour
 	[SerializeField] private GameObject toDestory;
 	[SerializeField] private bool ranged;
 	[SerializeField] private GameObject GameManager;
-
-	private float speed;
+	[SerializeField] private float speed;
+	
 	private int health;
 	private bool hasArrived;
 	private int damage; 
@@ -15,7 +15,7 @@ public class EnemyLogic : MonoBehaviour
 	private void Awake()
 	{
 		health = 100;
-		speed = 10f;
+		speed = 2.5f;
 		hasArrived = false;
 		damage = 10;
 
