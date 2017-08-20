@@ -10,7 +10,7 @@ public class GameLogic : MonoBehaviour {
 	public float castleHealth;
 	public int currency = 100;
 	private int waveReward;
-	private int waveNumber;
+	public int waveNumber;
 	#endregion
 
 	#region GameObjectReferences
