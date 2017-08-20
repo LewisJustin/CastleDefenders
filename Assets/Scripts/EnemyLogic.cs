@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using System.Collections;
 
 public class EnemyLogic : MonoBehaviour
 {
@@ -17,6 +16,7 @@ public class EnemyLogic : MonoBehaviour
 
 	void Update()
 	{
+<<<<<<< HEAD
 		if (health <= 0)
 			Destroy(toDestory);
 
@@ -70,3 +70,13 @@ public class EnemyLogic : MonoBehaviour
 	}
 	
 }
+=======
+		if (!ranged)
+			if (toDestory.position.x < 5)
+				transform.Translate(Vector3.right * speed * Time.deltaTime);
+		if (ranged)
+			if (toDestory.position.x < 8)
+				transform.Translate(Vector3.right * speed * Time.deltaTime);
+	}
+}
+>>>>>>> 2debf05a44530888c448c6d3bc97fe44ffa12621
