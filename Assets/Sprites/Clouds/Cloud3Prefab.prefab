@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212105602688290934}
   - component: {fileID: 114009446483407830}
   m_Layer: 0
-  m_Name: Cloud3
+  m_Name: Cloud3Prefab
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

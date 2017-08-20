@@ -4,12 +4,22 @@ using UnityEngine;
 
 public class CloudLogic : MonoBehaviour {
 
-	[SerializeField] private Transform cloudSpawnPoints;
-	[SerializeField] private Sprite cloudSprite;
+	[SerializeField] private Transform[] cloudSpawnPoints;
+	[SerializeField] private GameObject[] cloud;
 
 	void Start ()
 	{
-		Transform _sp = cloudSpawnPoints;
-		Instantiate(cloudSprite, _sp.position, _sp.rotation);
+		StartCoroutine(SpawnCloudsWaitTime());
+	}
+
+	IEnumerator SpawnCloudsWaitTime()
+	{
+		for(int i=0; i < 10; i++)
+		{
+			yield return new WaitForSeconds(3f);
+			Transform _sp = cloudSpawnPoints[Random.Range(0, cloudSpawnPoints.Length)];
+			Instantiate(cloud[Random.Range(0,cloud.Length)], _sp.position, _sp.rotation);
+		}
+
 	}
 }
