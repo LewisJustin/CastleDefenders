@@ -11,6 +11,7 @@ public class GameLogic : MonoBehaviour {
 	public int currency = 100;
 	private int waveReward;
 	public int waveNumber;
+	public int castleArmor = 5;
 	#endregion
 
 	#region GameObjectReferences
@@ -38,5 +39,10 @@ public class GameLogic : MonoBehaviour {
 	private void SetCastleHealthFill(float _amount)
 	{
 		castleHealthFill.localScale = new Vector3(_amount, 1f);
+	}
+
+	public void castleTakeDamage(int damage)
+	{
+		castleHealth -= (damage - castleArmor);
 	}
 }

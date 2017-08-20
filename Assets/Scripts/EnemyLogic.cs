@@ -5,16 +5,21 @@ public class EnemyLogic : MonoBehaviour
 {
 	[SerializeField] private GameObject toDestory;
 	[SerializeField] private bool ranged;
+	[SerializeField] private GameObject GameManager;
 
 	private float speed;
 	private int health;
 	private bool hasArrived;
+	private int damage; 
 
 	private void Awake()
 	{
 		health = 100;
-		speed = 2.5f;
+		speed = 10f;
 		hasArrived = false;
+		damage = 10;
+
+		GameManager = GameObject.Find("GameManager");
 	}
 
 	void Update()
@@ -31,7 +36,7 @@ public class EnemyLogic : MonoBehaviour
 			}
 			else
 			{
-				StartCoroutine(startAttackingMelee());
+				StartCoroutine(StartAttackingMelee());
 				hasArrived = true;
 			}
 		}
@@ -44,28 +49,29 @@ public class EnemyLogic : MonoBehaviour
 			}
 			else
 			{
-				StartCoroutine(startAttackingRanged());
+				StartCoroutine(StartAttackingRanged());
 				hasArrived = true;
 			}
 		}
 		#endregion
 	}
 
-	IEnumerator startAttackingMelee()
+	IEnumerator StartAttackingMelee()
 	{
 		while (health > 0)
 		{
-			Debug.Log("attack melee");
+			GameManager.GetComponent<GameLogic>().castleTakeDamage(damage);
 
 			yield return new WaitForSeconds(3f);
 		}
 	}
 
-	IEnumerator startAttackingRanged()
+	IEnumerator StartAttackingRanged()
 	{
+
 		while (health > 0)
 		{
-			Debug.Log("attack ranged");
+			GameManager.GetComponent<GameLogic>().castleTakeDamage(damage);
 
 			yield return new WaitForSeconds(3f);
 		}
