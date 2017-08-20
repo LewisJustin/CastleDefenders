@@ -130,7 +130,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 50410999}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12, y: -3.5, z: 0}
+  m_LocalPosition: {x: -30.6, y: -3.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1268435059}
@@ -2039,9 +2039,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a1b1ec1bb23b54bb97067a0ee5efdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  enemy:
+  - {fileID: 4148755467927460, guid: 459e3a5ca9df34c4fac86aa814427025, type: 2}
   waves:
   - name: TestWave
-    enemy: {fileID: 4198936940459796, guid: ca06f26be348fc2448dc23ae29ab27b0, type: 2}
     count: 5
     rate: 1
   spawnPoints:

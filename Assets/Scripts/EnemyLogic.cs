@@ -1,16 +1,16 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
-public class EnemyLogic : MonoBehaviour {
+public class EnemyLogic : MonoBehaviour
+{
+	[SerializeField] private GameObject toDestory;
 
-	// Use this for initialization
-	void Start () {
-		
-	}
-	
-	// Update is called once per frame
-	void Update () {
-		
+		public float speed = 1f;
+		public int health;
+		public bool ranged;
+
+	void Update()
+	{
+		transform.Translate(Vector3.right * speed * Time.deltaTime);
+
 	}
 }
