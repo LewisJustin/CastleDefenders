@@ -4,10 +4,10 @@ using System.Collections;
 public class EnemyLogic : MonoBehaviour
 {
 	[SerializeField] private GameObject toDestory;
+	[SerializeField] private bool ranged;
 
-	public float speed = 1f;
-	public int health= 100;
-	public bool ranged;
+	private float speed;
+	private int health= 100;
 	private bool hasArrived = false;
 
 	private void Awake()
