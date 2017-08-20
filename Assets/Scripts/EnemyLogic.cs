@@ -7,12 +7,14 @@ public class EnemyLogic : MonoBehaviour
 	[SerializeField] private bool ranged;
 
 	private float speed;
-	private int health= 100;
-	private bool hasArrived = false;
+	private int health;
+	private bool hasArrived;
 
 	private void Awake()
 	{
 		health = 100;
+		speed = 2.5f;
+		hasArrived = false;
 	}
 
 	void Update()
