@@ -2040,12 +2040,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a1b1ec1bb23b54bb97067a0ee5efdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy:
-  - {fileID: 4148755467927460, guid: 459e3a5ca9df34c4fac86aa814427025, type: 2}
   waves:
-  - name: TestWave
-    count: 5
+  - count: 5
     rate: 1
+    enemy: {fileID: 4198936940459796, guid: ca06f26be348fc2448dc23ae29ab27b0, type: 2}
   spawnPoints:
   - {fileID: 50411000}
 --- !u!4 &1268435059
