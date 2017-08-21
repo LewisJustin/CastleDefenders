@@ -9,6 +9,7 @@ public class EnemyLogic : MonoBehaviour
 	[SerializeField] private float speed;
 	[SerializeField] private int arrowDamage;
     [SerializeField] private Animator animator;
+	[SerializeField] private GameObject Bow;
 
 	public int health;
 	private bool hasArrived;
@@ -29,6 +30,7 @@ public class EnemyLogic : MonoBehaviour
 		damage = 10;
 
 		GameManager = GameObject.Find("GameManager");
+		Bow = GameObject.Find("Bow");
 
         animator = GetComponent<Animator>();
         animator.SetBool("isAtTarget", false);
@@ -98,7 +100,7 @@ public class EnemyLogic : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		health -= 50;
+		health -= Bow.GetComponent<BowLogic>().damage;
 	}
 
 }

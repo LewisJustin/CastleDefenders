@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class CastleStoreLogic : MonoBehaviour
 {
@@ -8,30 +9,44 @@ public class CastleStoreLogic : MonoBehaviour
 	[SerializeField] int UpgradeBowDamageCost;
 	[SerializeField] int UpgradeBowFireRateCost;
 
-	void UpgradeCastleArmor()
+
+	[SerializeField] GameObject Bow;
+
+	[SerializeField] Text CastleArmorCostText;
+	[SerializeField] Text UpgradeBowDamageCostText;
+	[SerializeField] Text UpgradeBowFireRateCostText;
+
+	private void Start()
 	{
-		if (GetComponent<GameLogic>().currency <= CastleArmorCost)
+		CastleArmorCostText.text = "Upgrade Castle: " + CastleArmorCost + " Gold";
+		UpgradeBowDamageCostText.text = "Upgrade Bow Damage: " + UpgradeBowDamageCost + " Gold";
+		UpgradeBowFireRateCostText.text = "Upgrade Bow FireRate: " + UpgradeBowFireRateCost + " Gold";
+	}
+
+	public void UpgradeCastleArmor()
+	{
+		if (GetComponent<GameLogic>().currency >= CastleArmorCost)
 		{
 			GetComponent<GameLogic>().currency -= CastleArmorCost;
 			GetComponent<GameLogic>().castleArmour += 1;
 		}
 	}
 
-	void UpgradeBowDamage()
+	public void UpgradeBowDamage()
 	{
-		if (GetComponent<GameLogic>().currency <= UpgradeBowDamageCost)
+		if (GetComponent<GameLogic>().currency >= UpgradeBowDamageCost)
 		{
 			GetComponent<GameLogic>().currency -= UpgradeBowDamageCost;
-			// make bow script
+			Bow.GetComponent<BowLogic>().damage += 25;
 		}
 	}
 
-	void UpgradeBowFireRate()
+	public void UpgradeBowFireRate()
 	{
-		if (GetComponent<GameLogic>().currency <= UpgradeBowFireRateCost)
+		if (GetComponent<GameLogic>().currency >= UpgradeBowFireRateCost)
 		{
 			GetComponent<GameLogic>().currency -= UpgradeBowFireRateCost;
-			// make bow script
+			Bow.GetComponent<BowLogic>().bowDrawSpeed -= .25f;
 		}
 	}
 

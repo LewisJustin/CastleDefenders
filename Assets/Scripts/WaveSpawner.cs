@@ -8,6 +8,7 @@ public class WaveSpawner : MonoBehaviour
 
 	private bool hasBeenRewardedThisRound = false;
 
+	[SerializeField] GameObject panel;
 
 	public enum SpawnState {SPAWNING, WAITING}
 
@@ -54,9 +55,16 @@ public class WaveSpawner : MonoBehaviour
 
 	private void Update()
 	{
+		
+
 		if (enemiesInThisWave == 0)
 		{
 			state = SpawnState.WAITING;
+			panel.SetActive(true);
+		}
+		else
+		{
+			panel.SetActive(false);
 		}
 
 		if(state == SpawnState.WAITING)
@@ -89,6 +97,8 @@ public class WaveSpawner : MonoBehaviour
 		if (state == SpawnState.WAITING)
 		{
 			StartCoroutine(SpawnWave(waves[nextWave]));
+
+			GetComponent<GameLogic>().castleHealth = GetComponent<GameLogic>().castleMaxHealth;
 
 			GetComponent<GameLogic>().waveNumber++;
 		}

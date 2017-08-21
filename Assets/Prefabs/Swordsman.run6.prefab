@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 212662236517964920}
   - component: {fileID: 95725516715986660}
   - component: {fileID: 114414307929319186}
+  - component: {fileID: 61410234922361392}
   m_Layer: 0
   m_Name: Swordsman.run6
   m_TagString: Untagged
@@ -42,6 +43,31 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!61 &61410234922361392
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1698843518497314}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 1.9, y: 2.6}
+    newSize: {x: 1.9, y: 2.6}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1.9, y: 2.6}
+  m_EdgeRadius: 0
 --- !u!95 &95725516715986660
 Animator:
   serializedVersion: 3
@@ -74,6 +100,7 @@ MonoBehaviour:
   GameManager: {fileID: 0}
   speed: 0
   arrowDamage: 0
+  animator: {fileID: 95725516715986660}
   health: 0
 --- !u!212 &212662236517964920
 SpriteRenderer:
