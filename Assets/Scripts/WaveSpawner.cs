@@ -6,6 +6,9 @@ using UnityEngine;
 public class WaveSpawner : MonoBehaviour
 {
 
+	private bool hasBeenRewardedThisRound = false;
+
+
 	public enum SpawnState {SPAWNING, WAITING}
 
 	[System.Serializable]
@@ -109,7 +112,7 @@ public class WaveSpawner : MonoBehaviour
 	IEnumerator SpawnWave(Wave _wave)
 	{
 		state = SpawnState.SPAWNING;
-
+		hasBeenRewardedThisRound = false;
 		for (int i = 0; i < _wave.count; i++)
 		{
 			//Debug.Log(numberOfTimesLooped);
@@ -125,7 +128,12 @@ public class WaveSpawner : MonoBehaviour
 		state = SpawnState.WAITING;
 		//waveCountdown = timeBetweenWaves;
 
-		GetComponent<GameLogic>().currency += 100;
+		if (!hasBeenRewardedThisRound)
+		{
+			GetComponent<GameLogic>().currency += 100;
+			hasBeenRewardedThisRound = true;
+		}
+
 
 		if(nextWave + 1 > waves.Length - 1)
 		{

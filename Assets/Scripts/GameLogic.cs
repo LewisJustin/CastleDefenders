@@ -9,7 +9,7 @@ public class GameLogic : MonoBehaviour
 	#region Variables
 	private int castleMaxHealth = 100;
 	public float castleHealth;
-	public int currency = 100;
+	public int currency;
 	private int waveReward;
 	public int waveNumber;
 	public int castleArmour = 5;
@@ -25,6 +25,7 @@ public class GameLogic : MonoBehaviour
 	private void Awake()
 	{
 		castleHealth = castleMaxHealth;
+		currency = 0;
 	}
 
 	private void Update()
