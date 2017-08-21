@@ -13,6 +13,7 @@ public class GameLogic : MonoBehaviour
 	private int waveReward;
 	public int waveNumber;
 	public int castleArmour = 5;
+    public bool Dead = false;
 	#endregion
 
 	#region GameObjectReferences
@@ -30,7 +31,7 @@ public class GameLogic : MonoBehaviour
 	{
 		castleHealth = Mathf.Clamp(castleHealth, 0f, castleMaxHealth);
 
-		if (castleHealth<=0)
+		if (castleHealth<=0 && Dead == false)
 		{
 			die(waveNumber);
 		}
@@ -54,6 +55,7 @@ public class GameLogic : MonoBehaviour
 
 	private void die(int _waveNumber)
 	{
+        Dead = true;
 		Debug.Log("Died on wave " + _waveNumber);
 	}
 }

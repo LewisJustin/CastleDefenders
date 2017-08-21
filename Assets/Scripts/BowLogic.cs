@@ -32,6 +32,7 @@ public class BowLogic : MonoBehaviour {
 	{
 		canShoot = false;
 		yield return new WaitForSeconds(bowDrawSpeed);
+        Debug.Log("Shooting Bow");
 		canShoot = true;
 	}
 }

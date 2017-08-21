@@ -6,9 +6,10 @@ public class CloudLogic : MonoBehaviour
 {
 
 	[SerializeField] private Transform[] cloudSpawnPoints;
-	[SerializeField] private GameObject[] cloud;
-
+	[SerializeField] private GameObject[] cloudPrefabs;
+    [SerializeField] private GameObject CloudHolder;
 	[SerializeField] private float spawnRate;
+    private GameObject cloud;
 
 	void Start ()
 	{
@@ -21,7 +22,8 @@ public class CloudLogic : MonoBehaviour
 		{
 			yield return new WaitForSeconds(spawnRate);
 			Transform _sp = cloudSpawnPoints[Random.Range(0, cloudSpawnPoints.Length)];
-			Instantiate(cloud[Random.Range(0,cloud.Length)], _sp.position, _sp.rotation);
+			cloud = Instantiate(cloudPrefabs[Random.Range(0,cloudPrefabs.Length)], _sp.position, _sp.rotation) as GameObject;
+            cloud.transform.parent = CloudHolder.transform;
 		}
 
 	}
