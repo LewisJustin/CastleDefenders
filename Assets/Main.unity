@@ -2244,7 +2244,7 @@ MonoBehaviour:
   waves:
   - count: 5
     rate: 1
-    enemy: {fileID: 4148755467927460, guid: 459e3a5ca9df34c4fac86aa814427025, type: 2}
+    enemy: {fileID: 4196019719258248, guid: 776c3965ee0a9fa44bc1dc395fae66b0, type: 2}
   enemiesInThisWave: 0
   spawnPoints:
   - {fileID: 50411000}

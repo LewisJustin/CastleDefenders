@@ -3,7 +3,7 @@ using System.Collections;
 
 public class EnemyLogic : MonoBehaviour
 {
-	[SerializeField] private GameObject toDestory;
+	
 	[SerializeField] private bool ranged;
 	[SerializeField] private GameObject GameManager;
 	[SerializeField] private float speed;
@@ -36,8 +36,9 @@ public class EnemyLogic : MonoBehaviour
 		{
 			GameManager.GetComponent<WaveSpawner>().enemiesInThisWave--;
 
-			Destroy(toDestory);
-		}
+            Destroy(gameObject);	
+                
+        }
 			
 
 		#region GettingToLocation
