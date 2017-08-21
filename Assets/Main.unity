@@ -2061,6 +2061,7 @@ MonoBehaviour:
   currency: 100
   waveNumber: 0
   castleArmor: 5
+  Dead: 0
   waveNumberText: {fileID: 504106929}
   currencyText: {fileID: 1495848460}
   castleHealthFill: {fileID: 126902958}
