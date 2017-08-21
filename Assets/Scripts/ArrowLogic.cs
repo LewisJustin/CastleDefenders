@@ -23,7 +23,7 @@ public class ArrowLogic : MonoBehaviour {
 		transform.GetComponent<Rigidbody2D>().freezeRotation = true;
 		transform.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 		//y = false;
-		Debug.Log("working");
+		//Debug.Log("working");
 
 		StartCoroutine(DestroyMe());
 	}

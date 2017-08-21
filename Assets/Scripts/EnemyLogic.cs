@@ -95,5 +95,10 @@ public class EnemyLogic : MonoBehaviour
 			yield return new WaitForSeconds(3f);
 		}
 	}
-	
+
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		Debug.Log("TakeDamge");
+	}
+
 }
