@@ -8,6 +8,7 @@ public class EnemyLogic : MonoBehaviour
 	[SerializeField] private GameObject GameManager;
 	[SerializeField] private float speed;
 	[SerializeField] private int arrowDamage;
+    [SerializeField] private Animator animator;
 
 	public int health;
 	private bool hasArrived;
@@ -28,6 +29,9 @@ public class EnemyLogic : MonoBehaviour
 		damage = 10;
 
 		GameManager = GameObject.Find("GameManager");
+
+        animator = GetComponent<Animator>();
+        animator.SetBool("isAtTarget", false);
 	}
 
 	void Update()
@@ -72,6 +76,7 @@ public class EnemyLogic : MonoBehaviour
 
 	IEnumerator StartAttackingMelee()
 	{
+        animator.SetBool("isAtTarget", true); 
 		while (health > 0)
 		{
 			GameManager.GetComponent<GameLogic>().castleTakeDamage(damage);
