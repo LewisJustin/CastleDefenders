@@ -28,9 +28,14 @@ public class ArrowLogic : MonoBehaviour {
 		StartCoroutine(DestroyMe());
 	}
 
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		Destroy(toDestroy);
+	}
+
 	IEnumerator DestroyMe()
 	{
-		yield return new WaitForSeconds(3f);
+		yield return new WaitForSeconds(.5f);
 		Destroy(toDestroy);
 	}
 }

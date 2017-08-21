@@ -52,7 +52,9 @@ public class WaveSpawner : MonoBehaviour
 	private void Update()
 	{
 		if (enemiesInThisWave == 0)
+		{
 			state = SpawnState.WAITING;
+		}
 
 		if(state == SpawnState.WAITING)
 		{
@@ -122,6 +124,8 @@ public class WaveSpawner : MonoBehaviour
 	{
 		state = SpawnState.WAITING;
 		//waveCountdown = timeBetweenWaves;
+
+		GetComponent<GameLogic>().currency += 100;
 
 		if(nextWave + 1 > waves.Length - 1)
 		{
