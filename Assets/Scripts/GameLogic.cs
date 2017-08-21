@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GameLogic : MonoBehaviour {
+public class GameLogic : MonoBehaviour
+{
 
 	#region Variables
 	private int castleMaxHealth = 100;
@@ -11,7 +12,7 @@ public class GameLogic : MonoBehaviour {
 	public int currency = 100;
 	private int waveReward;
 	public int waveNumber;
-	public int castleArmor = 5;
+	public int castleArmour = 5;
 	#endregion
 
 	#region GameObjectReferences
@@ -48,7 +49,7 @@ public class GameLogic : MonoBehaviour {
 
 	public void castleTakeDamage(int damage)
 	{
-		castleHealth -= (damage - castleArmor);
+		castleHealth -= (damage - castleArmour);
 	}
 
 	private void die(int _waveNumber)

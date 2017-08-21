@@ -7,10 +7,18 @@ public class EnemyLogic : MonoBehaviour
 	[SerializeField] private bool ranged;
 	[SerializeField] private GameObject GameManager;
 	[SerializeField] private float speed;
-	
-	private int health;
+	[SerializeField] private int arrowDamage;
+
+	public int health;
 	private bool hasArrived;
-	private int damage; 
+	private int damage;
+
+	//public void TakeDamage(int _damage)
+	//{
+	//	health -= _damage;
+	//}
+
+	
 
 	private void Awake()
 	{
@@ -25,7 +33,12 @@ public class EnemyLogic : MonoBehaviour
 	void Update()
 	{
 		if (health <= 0)
+		{
+			GameManager.GetComponent<WaveSpawner>().enemiesInThisWave--;
+
 			Destroy(toDestory);
+		}
+			
 
 		#region GettingToLocation
 		if (!ranged && !hasArrived)

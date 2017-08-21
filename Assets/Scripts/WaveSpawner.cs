@@ -3,7 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [RequireComponent(typeof(GameLogic))]
-public class WaveSpawner : MonoBehaviour {
+public class WaveSpawner : MonoBehaviour
+{
 
 	public enum SpawnState {SPAWNING, WAITING}
 
@@ -20,6 +21,8 @@ public class WaveSpawner : MonoBehaviour {
 
 	public Wave[] waves;
 	private int nextWave = 0;
+
+	[HideInInspector] public int enemiesInThisWave;
 
 	public Transform[] spawnPoints;
 
@@ -48,6 +51,9 @@ public class WaveSpawner : MonoBehaviour {
 
 	private void Update()
 	{
+		if (enemiesInThisWave == 0)
+			state = SpawnState.WAITING;
+
 		if(state == SpawnState.WAITING)
 		{
 			if (!EnemyIsAlive())
@@ -75,11 +81,6 @@ public class WaveSpawner : MonoBehaviour {
 	
 	public void StartWave()
 	{
-
-
-		if (GameObject.Find("Enemy") == false)
-			state = SpawnState.WAITING;
-
 		if (state == SpawnState.WAITING)
 		{
 			StartCoroutine(SpawnWave(waves[nextWave]));
@@ -135,6 +136,7 @@ public class WaveSpawner : MonoBehaviour {
 
 	void SpawnEnemy (Transform _enemy)
 	{
+		enemiesInThisWave++;
 		Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
 		Transform newObject = Instantiate(_enemy, _sp.position, _sp.rotation);
 		newObject.name = "Enemy";
