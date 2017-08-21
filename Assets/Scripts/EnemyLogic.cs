@@ -3,29 +3,26 @@ using System.Collections;
 
 public class EnemyLogic : MonoBehaviour
 {
-	[SerializeField] private GameObject toDestory;
 	[SerializeField] private bool ranged;
 	[SerializeField] private GameObject GameManager;
 	[SerializeField] private float speed;
 	
-	private int health;
+	public int health;
 	private bool hasArrived;
-	private int damage; 
+	public int damage; 
 
 	private void Awake()
 	{
-		health = 100;
-		speed = 2.5f;
 		hasArrived = false;
-		damage = 10;
+		
 
 		GameManager = GameObject.Find("GameManager");
 	}
 
 	void Update()
 	{
-		if (health <= 0)
-			Destroy(toDestory);
+        if (health <= 0)
+            Destroy(gameObject);
 
 		#region GettingToLocation
 		if (!ranged && !hasArrived)
@@ -43,7 +40,7 @@ public class EnemyLogic : MonoBehaviour
 
 		if (ranged && !hasArrived)
 		{
-			if (transform.position.x < 8)
+			if (transform.position.x < 2)
 			{
 				transform.Translate(Vector3.right * speed * Time.deltaTime);
 			}

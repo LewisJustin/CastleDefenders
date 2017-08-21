@@ -52,9 +52,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 30efdaa29d064174494f05adf7a9c247, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  toDestory: {fileID: 1788475076161926}
-  ranged: 0
+  ranged: 1
   GameManager: {fileID: 0}
+  speed: 2.5
+  health: 100
+  damage: 10
 --- !u!212 &212737836050392016
 SpriteRenderer:
   m_ObjectHideFlags: 1
