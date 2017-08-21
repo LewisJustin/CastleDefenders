@@ -99,13 +99,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 31779630fcac5ac40981528c9ee50b95, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  toDestroy: {fileID: 1202056549640482}
 --- !u!212 &212750654597645056
 SpriteRenderer:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1202056549640482}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_MotionVectors: 1
