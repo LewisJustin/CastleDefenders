@@ -748,9 +748,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 85182e774ebf3f2498c1a34485de2394, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ProjectilePrefab: {fileID: 50688196544719250, guid: bfea1dbc18033274d88093f710df74b7,
+  ProjectilePrefab: {fileID: 50959458265469198, guid: adebdb87a8a7c2d4bbf1d4fea758fdf3,
     type: 2}
-  bowDrawSpeed: 0.1
+  bowDrawSpeed: 1
   damage: 100
   arrowSpeed: 20
 --- !u!4 &559339126
@@ -765,7 +765,7 @@ Transform:
   m_Children:
   - {fileID: 961850103}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &559339127
 MonoBehaviour:
@@ -3095,7 +3095,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 276.25, y: -230.10011}
+  m_AnchoredPosition: {x: 276.25, y: -230.1001}
   m_SizeDelta: {x: 352.5, y: 41.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1390943132
@@ -3397,6 +3397,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1452204012}
   - component: {fileID: 1452204011}
+  - component: {fileID: 1452204013}
   m_Layer: 0
   m_Name: 'Castle '
   m_TagString: Untagged
@@ -3459,6 +3460,37 @@ Transform:
   m_Father: {fileID: 1429486271}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!68 &1452204013
+EdgeCollider2D:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1452204010}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_EdgeRadius: 0
+  m_Points:
+  - {x: -0.08500001, y: -0.070648946}
+  - {x: -0.08626628, y: 0.07141575}
+  - {x: -0.065223575, y: 0.07115555}
+  - {x: -0.06455931, y: 0.051334336}
+  - {x: -0.045654, y: 0.050526276}
+  - {x: -0.045678645, y: 0.07175076}
+  - {x: -0.02473396, y: 0.070828795}
+  - {x: -0.02490288, y: 0.030792221}
+  - {x: 0.024741411, y: 0.030266121}
+  - {x: 0.024075598, y: 0.07105219}
+  - {x: 0.04294905, y: 0.07066086}
+  - {x: 0.044009924, y: 0.050388888}
+  - {x: 0.06573558, y: 0.05004996}
+  - {x: 0.06439152, y: 0.06969431}
+  - {x: 0.08396524, y: 0.06921202}
+  - {x: 0.08596778, y: -0.070648946}
 --- !u!1 &1495848458
 GameObject:
   m_ObjectHideFlags: 0
@@ -3884,7 +3916,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2047809477
 GameObject:

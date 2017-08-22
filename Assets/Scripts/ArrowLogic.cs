@@ -14,7 +14,7 @@ public class ArrowLogic : MonoBehaviour {
 		if (moveDirection != Vector2.zero)
 		{
 			float angle = Mathf.Atan2(moveDirection.y, moveDirection.x) * Mathf.Rad2Deg;
-			transform.rotation = Quaternion.AngleAxis(angle, Vector3.forward);
+			transform.rotation = Quaternion.AngleAxis(angle - 180, Vector3.forward);
 		}
 	}
 
@@ -35,7 +35,7 @@ public class ArrowLogic : MonoBehaviour {
 
 	IEnumerator DestroyMe()
 	{
-		yield return new WaitForSeconds(.5f);
+		yield return new WaitForSeconds(1f);
 		Destroy(toDestroy);
 	}
 }
