@@ -750,8 +750,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ProjectilePrefab: {fileID: 50688196544719250, guid: bfea1dbc18033274d88093f710df74b7,
     type: 2}
-  bowDrawSpeed: 1
+  bowDrawSpeed: 0.1
   damage: 100
+  arrowSpeed: 20
 --- !u!4 &559339126
 Transform:
   m_ObjectHideFlags: 0
@@ -759,7 +760,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 559339124}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.71, y: 1.13, z: 0}
+  m_LocalPosition: {x: 7.59, y: 1.06, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 961850103}
@@ -1723,13 +1724,13 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 961850102}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalRotation: {x: 0, y: 1, z: 0, w: 0}
+  m_LocalPosition: {x: -0.1, y: -0.1, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 559339126}
   m_RootOrder: 0
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
 --- !u!212 &961850104
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -1762,7 +1763,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 60e0a740f68774140a1ab4cce056561e, type: 3}
+  m_Sprite: {fileID: 21300000, guid: cf75ebee0b11d07479a88c4fc470f278, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -2741,9 +2742,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1268435059}
   - component: {fileID: 1268435058}
-  - component: {fileID: 1268435057}
   - component: {fileID: 1268435060}
   - component: {fileID: 1268435061}
+  - component: {fileID: 1268435057}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -2759,12 +2760,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 1268435056}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 162d306c7adef644eaeb169e1e0e5dda, type: 3}
+  m_Script: {fileID: 11500000, guid: e8f3cb9cd541cac4a83acf74624fc862, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   castleMaxHealth: 100
   castleHealth: 0
-  currency: 100
+  currency: 0
   waveNumber: 0
   castleArmour: 5
   Dead: 0
@@ -2786,9 +2787,6 @@ MonoBehaviour:
   waves:
   - count: 5
     rate: 1
-    enemy: {fileID: 4544439514759020, guid: a89c62b741551564c8e318997a1e0bb3, type: 2}
-  - count: 6
-    rate: 6
     enemy: {fileID: 4544439514759020, guid: a89c62b741551564c8e318997a1e0bb3, type: 2}
   enemiesInThisWave: 0
   spawnPoints:
@@ -3097,7 +3095,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 276.25, y: -230.1001}
+  m_AnchoredPosition: {x: 276.25, y: -230.10011}
   m_SizeDelta: {x: 352.5, y: 41.8}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1390943132

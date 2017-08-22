@@ -7,14 +7,11 @@ public class BowLogic : MonoBehaviour {
 	[SerializeField] Rigidbody2D ProjectilePrefab;
 
 	public float bowDrawSpeed;
-	 public int damage = 25;
+	public int damage = 25;
+    public int arrowSpeed;
 
 	private bool canShoot = true;
 
-	private void Awake()
-	{
-		bowDrawSpeed = 3f;
-	}
 
 	void Update()
 	{
@@ -22,9 +19,9 @@ public class BowLogic : MonoBehaviour {
 		{
 			StartCoroutine(ShootingCountdown());
 
-			Rigidbody2D projectile = Instantiate(ProjectilePrefab, transform.position, Quaternion.Euler(transform.rotation.x, transform.rotation.y, transform.rotation.z));
+			Rigidbody2D projectile = Instantiate(ProjectilePrefab, transform.position, Quaternion.Euler(transform.rotation.x, transform.rotation.y - 180f, transform.rotation.z));
 
-			projectile.velocity = transform.TransformDirection(Vector3.left * 20);
+			projectile.velocity = transform.TransformDirection(Vector3.right * arrowSpeed);
 		}
 	}
 	
