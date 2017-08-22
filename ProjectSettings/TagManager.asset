@@ -52,6 +52,12 @@ TagManager:
   - name: Castle
     uniqueID: 766873123
     locked: 0
+  - name: Sky
+    uniqueID: 3692463331
+    locked: 0
+  - name: Bow
+    uniqueID: 3934922283
+    locked: 0
   - name: Menu
     uniqueID: 3695760721
     locked: 0

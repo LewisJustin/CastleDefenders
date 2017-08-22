@@ -7,6 +7,13 @@ public class ArrowLogic : MonoBehaviour {
 	//private float x = 180f;
 	//private bool y = true;
 	[SerializeField] private GameObject toDestroy;
+    [SerializeField] private GameObject bow;
+
+
+    private void Awake()
+    {
+        bow = GameObject.Find("Bow");
+    }
 
 	private void Update()
 	{
@@ -35,6 +42,7 @@ public class ArrowLogic : MonoBehaviour {
 
 	IEnumerator DestroyMe()
 	{
+
 		yield return new WaitForSeconds(1f);
 		Destroy(toDestroy);
 	}
