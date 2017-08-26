@@ -8,7 +8,6 @@ public class BowLogic : MonoBehaviour {
     [SerializeField] Animator animator;
 
 	public float bowDrawSpeed;
-	public int damage;
     public int arrowSpeed;
 
 	private bool canShoot = true;
@@ -29,6 +28,8 @@ public class BowLogic : MonoBehaviour {
 			StartCoroutine(ShootingCountdown());
 
 			Rigidbody2D projectile = Instantiate(ProjectilePrefab, transform.position, Quaternion.Euler(transform.rotation.x, transform.rotation.y - 180f, transform.rotation.z));
+
+			
 
 			projectile.velocity = transform.TransformDirection(Vector3.right * arrowSpeed);
 		}

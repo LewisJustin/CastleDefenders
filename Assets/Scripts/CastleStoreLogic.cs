@@ -11,6 +11,7 @@ public class CastleStoreLogic : MonoBehaviour
 
 
 	[SerializeField] GameObject Bow;
+	[SerializeField] GameObject ArrowPrefab;
 
 	[SerializeField] Text CastleArmorCostText;
 	[SerializeField] Text UpgradeBowDamageCostText;
@@ -37,7 +38,7 @@ public class CastleStoreLogic : MonoBehaviour
 		if (GetComponent<GameLogic>().currency >= UpgradeBowDamageCost)
 		{
 			GetComponent<GameLogic>().currency -= UpgradeBowDamageCost;
-			Bow.GetComponent<BowLogic>().damage += 25;
+			ArrowPrefab.GetComponent<ArrowLogic>().damage += 25;
 		}
 	}
 

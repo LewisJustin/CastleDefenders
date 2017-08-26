@@ -7,12 +7,13 @@ public class ArrowLogic : MonoBehaviour {
 	//private float x = 180f;
 	//private bool y = true;
 	[SerializeField] private GameObject toDestroy;
-    [SerializeField] private GameObject bow;
 
 
-    private void Awake()
+	public int damage;
+
+	private void Awake()
     {
-        bow = GameObject.Find("Bow");
+		damage = 100;
     }
 
 	private void Update()
@@ -31,6 +32,7 @@ public class ArrowLogic : MonoBehaviour {
 		transform.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
 		//y = false;
 		//Debug.Log("working");
+		damage = 0;
 
 		StartCoroutine(DestroyMe());
 	}
@@ -43,7 +45,7 @@ public class ArrowLogic : MonoBehaviour {
 	IEnumerator DestroyMe()
 	{
 
-		yield return new WaitForSeconds(1f);
+		yield return new WaitForSeconds(1.5f);
 		Destroy(toDestroy);
 	}
 }
