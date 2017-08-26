@@ -12,14 +12,7 @@ public class EnemyLogic : MonoBehaviour
 
 	public int health;
 	private bool hasArrived;
-	private int damage;
-
-	//public void TakeDamage(int _damage)
-	//{
-	//	health -= _damage;
-	//}
-
-	
+	private int damage;	
 
 	private void Awake()
 	{
@@ -61,7 +54,7 @@ public class EnemyLogic : MonoBehaviour
 
 		if (ranged && !hasArrived)
 		{
-			if (transform.position.x < 8)
+			if (transform.position.x < Random.Range(.8f, 1.2f))
 			{
 				transform.Translate(Vector3.right * speed * Time.deltaTime);
 			}
