@@ -130,7 +130,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 50410999}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -30.6, y: -3.5, z: 0}
+  m_LocalPosition: {x: -30.6, y: -4.7, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1268435059}
@@ -3061,7 +3061,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   panel: {fileID: 1228304916}
   waves:
-  - count: 5
+  - count: 2
     rate: 1
     enemy: {fileID: 4544439514759020, guid: a89c62b741551564c8e318997a1e0bb3, type: 2}
   enemiesInThisWave: 0

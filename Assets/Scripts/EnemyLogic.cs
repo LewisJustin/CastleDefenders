@@ -91,7 +91,8 @@ public class EnemyLogic : MonoBehaviour
 
 	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		health -= collision.gameObject.GetComponent<ArrowLogic>().damage;
+		if(collision.gameObject.name == "Arrow")
+			health -= collision.gameObject.GetComponent<ArrowLogic>().damage;
 	}
 
 }

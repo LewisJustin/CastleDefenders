@@ -30,17 +30,12 @@ public class WaveSpawner : MonoBehaviour
 
 	public Transform[] spawnPoints;
 
-	//public float timeBetweenWaves = 0f;
-	//private float waveCountdown;
-
 	private float searchCountdown = 1f;
 
 	private SpawnState state = SpawnState.WAITING;
 
 	private void Start()
 	{
-		//waveCountdown = timeBetweenWaves;
-
 		if (spawnPoints.Length == 0)
 		{
 			Debug.LogError("No enemy spawnpoints");
@@ -126,7 +121,7 @@ public class WaveSpawner : MonoBehaviour
 		for (int i = 0; i < _wave.count; i++)
 		{
 			//Debug.Log(numberOfTimesLooped);
-			SpawnEnemy(_wave.enemy);
+			SpawnEnemy(_wave.enemy, _wave.count);
 			yield return new WaitForSeconds(1f / Random.Range(_wave.rate-.2f, _wave.rate+.2f));
 		}
 
@@ -156,7 +151,7 @@ public class WaveSpawner : MonoBehaviour
 		}
 	}
 
-	void SpawnEnemy (Transform _enemy)
+	void SpawnEnemy (Transform _enemy, int count)
 	{
 		enemiesInThisWave++;
 		Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];

@@ -29,7 +29,7 @@ public class BowLogic : MonoBehaviour {
 
 			Rigidbody2D projectile = Instantiate(ProjectilePrefab, transform.position, Quaternion.Euler(transform.rotation.x, transform.rotation.y - 180f, transform.rotation.z));
 
-			
+			projectile.name = "Arrow";
 
 			projectile.velocity = transform.TransformDirection(Vector3.right * arrowSpeed);
 		}
