@@ -8,11 +8,12 @@ public class EnemyLogic : MonoBehaviour
 	[SerializeField] private GameObject GameManager;
 	[SerializeField] private float speed;
 	[SerializeField] private int arrowDamage;
-    [SerializeField] private Animator animator;
+    [SerializeField] public Animator animator;
 
 	public int health;
-	private bool hasArrived;
-	private int damage;	
+	[HideInInspector] public bool hasArrived;
+	private int damage;
+	[HideInInspector] public bool canMove = true;
 
 	private void Awake()
 	{
@@ -36,14 +37,14 @@ public class EnemyLogic : MonoBehaviour
             Destroy(gameObject);	
                 
         }
-			
 
 		#region GettingToLocation
 		if (!ranged && !hasArrived)
 		{
 			if (transform.position.x < 5)
 			{
-				transform.Translate(Vector3.right * speed * Time.deltaTime);
+				if(canMove)
+					transform.Translate(Vector3.right * speed * Time.deltaTime);
 			}
 			else
 			{
@@ -56,7 +57,8 @@ public class EnemyLogic : MonoBehaviour
 		{
 			if (transform.position.x < Random.Range(.8f, 1.2f))
 			{
-				transform.Translate(Vector3.right * speed * Time.deltaTime);
+				if(canMove)
+					transform.Translate(Vector3.right * speed * Time.deltaTime);
 			}
 			else
 			{

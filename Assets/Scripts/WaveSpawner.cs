@@ -40,7 +40,8 @@ public class WaveSpawner : MonoBehaviour
 		{
 			Debug.LogError("No enemy spawnpoints");
 		}
-
+		GetComponent<GameLogic>().currency += 100;
+		hasBeenRewardedThisRound = true;
 	}
 
 	private void Awake()
