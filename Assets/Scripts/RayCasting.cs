@@ -24,7 +24,7 @@ public class RayCasting : MonoBehaviour {
 	{
 		for (int i = 0; i < 10;)
 		{
-			yield return new WaitForSeconds(1.5f);
+			yield return new WaitForSeconds(1f);
 
 			RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, distanceBetweenEnemies, toHit);
 
