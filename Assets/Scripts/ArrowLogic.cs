@@ -4,13 +4,7 @@ using UnityEngine;
 
 public class ArrowLogic : MonoBehaviour {
 
-	//private float x = 180f;
-	//private bool y = true;
 	[SerializeField] private GameObject toDestroy;
-
-	public LayerMask layer1;
-	public LayerMask layer2;
-
 
 	public int damage;
 
@@ -35,8 +29,6 @@ public class ArrowLogic : MonoBehaviour {
 	{
 		transform.GetComponent<Rigidbody2D>().freezeRotation = true;
 		transform.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
-		//y = false;
-		//Debug.Log("working");
 		damage = 0;
 
 		StartCoroutine(DestroyMe());

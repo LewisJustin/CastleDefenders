@@ -1,6 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
 
 public class BowLogic : MonoBehaviour {
 
@@ -20,9 +20,11 @@ public class BowLogic : MonoBehaviour {
 
 	void Update()
 	{
+		if (EventSystem.current.IsPointerOverGameObject())
+			return;
+
 		if (Input.GetMouseButtonUp(0) && canShoot == true)
 		{
-
             animator.SetBool("isCharging", false);
 
 			StartCoroutine(ShootingCountdown());

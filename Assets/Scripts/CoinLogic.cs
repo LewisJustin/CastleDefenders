@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class CoinLogic : MonoBehaviour {
 
+	[SerializeField] private ParticleSystem coinCollectEffect;
+
 	private GameObject gameManager;
 
 	private void Awake()
@@ -14,6 +16,8 @@ public class CoinLogic : MonoBehaviour {
 	void OnMouseOver()
 	{
 		gameManager.GetComponent<GameLogic>().currency += 10;
+
+		Instantiate(coinCollectEffect, transform.position, transform.rotation);
 
 		Destroy(gameObject);
 	}

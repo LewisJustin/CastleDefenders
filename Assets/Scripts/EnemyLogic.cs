@@ -25,7 +25,6 @@ public class EnemyLogic : MonoBehaviour
 	private void Awake()
 	{
 		health = 100;
-		speed = 2.5f;
 		hasArrived = false;
 		damage = 10;
 
@@ -37,6 +36,12 @@ public class EnemyLogic : MonoBehaviour
 
 	void Update()
 	{
+		//prevents bunching at spawn
+		if (transform.position.x < -35)
+			speed = 20f;
+		else if (transform.position.x >= -35)
+			speed = 2.5f;
+
 		if (health <= 0)
 		{
 			GameManager.GetComponent<WaveSpawner>().enemiesInThisWave--;

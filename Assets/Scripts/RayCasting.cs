@@ -24,22 +24,15 @@ public class RayCasting : MonoBehaviour {
 	{
 		for (int i = 0; i < 10;)
 		{
-			yield return new WaitForSeconds(1f);
+			yield return new WaitForSeconds(.01f);
 
 			RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, distanceBetweenEnemies, toHit);
 
 			if (hit.collider != null)
 			{
-				//if (hit.transform.position.x - transform.position.x < distanceBetweenEnemies)
-				//{
 					transform.parent.GetComponent<EnemyLogic>().canMove = false;
 
 					transform.parent.GetComponent<EnemyLogic>().animator.SetBool("isAtTarget", true);
-				//}
-
-					//transform.parent.GetComponent<EnemyLogic>().animator.SetBool("isAtTarget", true);
-				//}
-
 			}
 			else
 			{
