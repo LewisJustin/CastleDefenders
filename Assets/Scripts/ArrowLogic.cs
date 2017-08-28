@@ -7,10 +7,14 @@ public class ArrowLogic : MonoBehaviour {
 	//private float x = 180f;
 	//private bool y = true;
 	[SerializeField] private GameObject toDestroy;
+<<<<<<< HEAD
 
 	public LayerMask layer1;
 	public LayerMask layer2;
 
+=======
+    [SerializeField]private float TimeToDestroy;
+>>>>>>> d00e7f6d05af101260f63d2444b80f508db2f97e
 
 	public int damage;
 
@@ -50,7 +54,7 @@ public class ArrowLogic : MonoBehaviour {
 	IEnumerator DestroyMe()
 	{
 
-		yield return new WaitForSeconds(1.5f);
+		yield return new WaitForSeconds(TimeToDestroy);
 		Destroy(toDestroy);
 	}
 }

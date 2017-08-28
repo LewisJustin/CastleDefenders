@@ -100,12 +100,16 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toDestroy: {fileID: 1963600041905564}
+<<<<<<< HEAD
   layer1:
     serializedVersion: 2
     m_Bits: 512
   layer2:
     serializedVersion: 2
     m_Bits: 1024
+=======
+  TimeToDestroy: 5
+>>>>>>> d00e7f6d05af101260f63d2444b80f508db2f97e
   damage: 0
 --- !u!212 &212228872320995200
 SpriteRenderer:
