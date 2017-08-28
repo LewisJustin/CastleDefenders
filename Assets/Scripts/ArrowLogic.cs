@@ -8,12 +8,17 @@ public class ArrowLogic : MonoBehaviour {
 	//private bool y = true;
 	[SerializeField] private GameObject toDestroy;
 
+	public LayerMask layer1;
+	public LayerMask layer2;
+
 
 	public int damage;
 
 	private void Awake()
     {
 		damage = 100;
+
+		Physics2D.IgnoreLayerCollision(9, 10);
     }
 
 	private void Update()
