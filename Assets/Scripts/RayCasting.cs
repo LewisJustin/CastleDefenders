@@ -33,7 +33,7 @@ public class RayCasting : MonoBehaviour {
 				if (hit.transform.position.x - transform.position.x < distanceBetweenEnemies)
 				{
 					transform.parent.GetComponent<EnemyLogic>().canMove = false;
-						transform.parent.GetComponent<EnemyLogic>().animator.SetBool("isAtTarget", true);
+					transform.parent.GetComponent<EnemyLogic>().animator.SetBool("isAtTarget", true);
 				}
 			}
 			else
