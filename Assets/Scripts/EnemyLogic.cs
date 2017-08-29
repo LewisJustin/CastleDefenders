@@ -47,7 +47,7 @@ public class EnemyLogic : MonoBehaviour
 		{
 			GameManager.GetComponent<WaveSpawner>().enemiesInThisWave--;
 
-			if(Random.Range(0, 5) == 1)
+			if(Random.Range(0, 2) == 1)
 			{
 				DropCoin();
 			}
