@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 114414307929319186}
   - component: {fileID: 61410234922361392}
   m_Layer: 8
-  m_Name: Swordsman
+  m_Name: Swordsman.run6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
