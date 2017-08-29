@@ -132,6 +132,8 @@ MonoBehaviour:
   arrowDamage: 0
   animator: {fileID: 95725516715986660}
   coinDrop: {fileID: 4219273986065312, guid: f74e70a9ce67e6d42a26c309860bf813, type: 2}
+  archerArrow: {fileID: 50959458265469198, guid: adebdb87a8a7c2d4bbf1d4fea758fdf3,
+    type: 2}
   health: 0
   canMove: 1
   hasArrived: 0

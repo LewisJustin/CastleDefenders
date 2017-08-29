@@ -11,6 +11,7 @@ public class EnemyLogic : MonoBehaviour
 	[SerializeField] private int arrowDamage;
     [SerializeField] public Animator animator;
 	[SerializeField] private Transform coinDrop;
+	[SerializeField] private Rigidbody2D archerArrow;
 	#endregion
 
 	#region variables
@@ -40,7 +41,7 @@ public class EnemyLogic : MonoBehaviour
 		if (transform.position.x < -35)
 			speed = 20f;
 		else if (transform.position.x >= -35)
-			speed = 2.5f;
+			speed = 10f;
 
 		if (health <= 0)
 		{
@@ -99,9 +100,14 @@ public class EnemyLogic : MonoBehaviour
 
 	IEnumerator StartAttackingRanged()
 	{
-
 		while (health > 0)
 		{
+			Rigidbody2D newArrow = Instantiate(archerArrow, new Vector3 (3,-3,0), Quaternion.Euler(transform.rotation.x, transform.rotation.y - 180f, transform.rotation.z));
+
+			newArrow.name = "Enemy Arrow";
+
+			newArrow.velocity = transform.TransformDirection(Vector3.right * 20);
+
 			GameManager.GetComponent<GameLogic>().castleTakeDamage(damage);
 
 			yield return new WaitForSeconds(3f);
