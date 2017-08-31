@@ -8,6 +8,7 @@ public class ArrowLogic : MonoBehaviour {
 
 	public int damage;
 
+
 	private void Awake()
     {
 		damage = 100;
