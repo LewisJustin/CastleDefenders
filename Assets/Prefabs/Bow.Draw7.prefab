@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 212081342492365434}
   - component: {fileID: 95141155197849926}
   m_Layer: 0
-  m_Name: Bow.Draw7
+  m_Name: Bow.Draw
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

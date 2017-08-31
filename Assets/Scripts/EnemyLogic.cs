@@ -6,33 +6,34 @@ public class EnemyLogic : MonoBehaviour
 
 	#region SerializeVariables
 	[SerializeField] private bool ranged;
-	[SerializeField] private GameObject GameManager;
 	[SerializeField] private float speed;
-	[SerializeField] private int arrowDamage;
-    [SerializeField] public Animator animator;
 	[SerializeField] private Transform coinDrop;
 	[SerializeField] private Rigidbody2D archerArrow;
-	#endregion
+    [SerializeField] public int damage;
+    [SerializeField] public int health;
+    #endregion
 
-	#region variables
-	private int damage;
+    #region variables
 
-	[HideInInspector]public int health;
-	[HideInInspector] public bool canMove = true;
-	[HideInInspector] public bool hasArrived;
+
+    [HideInInspector]public Animator animator;
+    [HideInInspector]private GameObject GameManager;
+	[HideInInspector]public bool canMove = true;
+	[HideInInspector]public bool hasArrived;
+    [HideInInspector]private float OriginalSpeed;
 	#endregion
 	
 
 	private void Awake()
 	{
-		health = 100;
 		hasArrived = false;
-		damage = 10;
+        OriginalSpeed = speed;
 
-		GameManager = GameObject.Find("GameManager");
-
+        GameManager = GameObject.Find("GameManager");
         animator = GetComponent<Animator>();
+
         animator.SetBool("isAtTarget", false);
+        
 	}
 
 	void Update()
@@ -41,7 +42,8 @@ public class EnemyLogic : MonoBehaviour
 		if (transform.position.x < -35)
 			speed = 20f;
 		else if (transform.position.x >= -35)
-			speed = 10f;
+			speed = OriginalSpeed;
+
 
 		if (health <= 0)
 		{
@@ -100,7 +102,8 @@ public class EnemyLogic : MonoBehaviour
 
 	IEnumerator StartAttackingRanged()
 	{
-		while (health > 0)
+        animator.SetBool("isAtTarget", true);
+        while (health > 0)
 		{
 			Rigidbody2D newArrow = Instantiate(archerArrow, new Vector3 (3,-3,0), Quaternion.Euler(transform.rotation.x, transform.rotation.y - 180f, transform.rotation.z));
 

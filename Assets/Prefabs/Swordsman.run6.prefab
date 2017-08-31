@@ -127,14 +127,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ranged: 0
-  GameManager: {fileID: 0}
-  speed: -0.82
-  arrowDamage: 0
-  animator: {fileID: 95725516715986660}
+  speed: 3
   coinDrop: {fileID: 4219273986065312, guid: f74e70a9ce67e6d42a26c309860bf813, type: 2}
-  archerArrow: {fileID: 50959458265469198, guid: adebdb87a8a7c2d4bbf1d4fea758fdf3,
+  archerArrow: {fileID: 50688467181018026, guid: 32da8c24b05295b4aa1640415cb668e1,
     type: 2}
-  health: 0
+  damage: 10
+  health: 100
+  animator: {fileID: 95725516715986660}
   canMove: 1
   hasArrived: 0
 --- !u!114 &114641431834084932

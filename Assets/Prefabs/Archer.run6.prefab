@@ -54,7 +54,7 @@ BoxCollider2D:
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_UsedByEffector: 0
-  m_UsedByComposite: 0
+  m_UsedByComposite: 1
   m_Offset: {x: 0.06915426, y: -0.02304995}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
@@ -97,14 +97,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ranged: 1
-  GameManager: {fileID: 0}
-  speed: 0
-  arrowDamage: 0
-  animator: {fileID: 0}
+  speed: 3
   coinDrop: {fileID: 4219273986065312, guid: f74e70a9ce67e6d42a26c309860bf813, type: 2}
   archerArrow: {fileID: 50688467181018026, guid: 32da8c24b05295b4aa1640415cb668e1,
     type: 2}
-  health: 0
+  damage: 9
+  health: 100
+  animator: {fileID: 0}
   canMove: 1
   hasArrived: 0
 --- !u!212 &212102780677890506
@@ -136,8 +135,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 1280024417
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 3ca958fd8004c914baa013ed76108e5a, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
