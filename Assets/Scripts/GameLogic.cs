@@ -12,7 +12,7 @@ public class GameLogic : MonoBehaviour
     public int currency;
     private int waveReward;
     public int waveNumber;
-    public int castleArmour = 5;
+    public int castleArmour;
     public bool Dead = false;
     #endregion
 

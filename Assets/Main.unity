@@ -130,7 +130,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 50410999}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -56.5, y: -3.93, z: 0}
+  m_LocalPosition: {x: -56.48, y: -3.34, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1268435059}
@@ -179,7 +179,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 1275.0999}
+  m_AnchoredPosition: {x: 0, y: 1275.1}
   m_SizeDelta: {x: 0, y: -114.4}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &97754129
@@ -2831,7 +2831,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: 183.89998}
+  m_AnchoredPosition: {x: 0, y: 183.89996}
   m_SizeDelta: {x: -0.38183594, y: -522.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1228304918
@@ -3071,7 +3071,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   castleMaxHealth: 100
   castleHealth: 0
-  currency: 0
+  currency: 1000
   waveNumber: 0
   castleArmour: 5
   Dead: 0
@@ -3094,6 +3094,9 @@ MonoBehaviour:
   - count: 2
     rate: 1
     enemy: {fileID: 4688335588227230, guid: e8877924b2e992447a589adb55d49d4e, type: 2}
+  - count: 3
+    rate: 1.5
+    enemy: {fileID: 4544439514759020, guid: a89c62b741551564c8e318997a1e0bb3, type: 2}
   enemiesInThisWave: 0
   spawnPoints:
   - {fileID: 50411000}

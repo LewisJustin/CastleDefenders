@@ -25,6 +25,8 @@ public class CastleStoreLogic : MonoBehaviour
 		
 		//For Some Reason, I have to put this here.
 		ArrowPrefab.GetComponent<ArrowLogic>().damage = 25;
+		GetComponent<GameLogic>().castleArmour = 5;
+		Bow.GetComponent<BowLogic>().bowDrawSpeed = 3f;
 	}
 
 	public void UpgradeCastleArmor()
