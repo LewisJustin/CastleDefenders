@@ -14,8 +14,6 @@ public class EnemyLogic : MonoBehaviour
     #endregion
 
     #region variables
-
-
     [HideInInspector]public Animator animator;
     [HideInInspector]private GameObject GameManager;
 	[HideInInspector]public bool canMove = true;

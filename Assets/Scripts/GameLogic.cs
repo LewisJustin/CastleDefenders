@@ -7,7 +7,6 @@ public class GameLogic : MonoBehaviour
 {
 
     #region Variables
-    [HideInInspector]
     public int castleMaxHealth = 100;
     public float castleHealth;
     public int currency;

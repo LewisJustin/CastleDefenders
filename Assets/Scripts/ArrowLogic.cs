@@ -6,16 +6,14 @@ public class ArrowLogic : MonoBehaviour {
 
 	[SerializeField] private GameObject toDestroy;
 
-	public int damage;
+	public int damage = 25;
 
 
 	private void Awake()
     {
-		damage = 100;
-
 		Physics2D.IgnoreLayerCollision(9, 10);
     }
-
+	
 	private void Update()
 	{
 		Vector2 moveDirection = transform.GetComponent<Rigidbody2D>().velocity;

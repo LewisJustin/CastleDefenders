@@ -6,7 +6,7 @@ public class ArcherArrowLogic : MonoBehaviour {
 
 	private void Start()
 	{
-		//Destroy(toDestroy);
+		Destroy(toDestroy, 3f);
 	}
 
 }

@@ -22,6 +22,9 @@ public class CastleStoreLogic : MonoBehaviour
 		CastleArmorCostText.text = "Upgrade Castle: " + CastleArmorCost + " Gold";
 		UpgradeBowDamageCostText.text = "Upgrade Bow Damage: " + UpgradeBowDamageCost + " Gold";
 		UpgradeBowFireRateCostText.text = "Upgrade Bow FireRate: " + UpgradeBowFireRateCost + " Gold";
+		
+		//For Some Reason, I have to put this here.
+		ArrowPrefab.GetComponent<ArrowLogic>().damage = 25;
 	}
 
 	public void UpgradeCastleArmor()
