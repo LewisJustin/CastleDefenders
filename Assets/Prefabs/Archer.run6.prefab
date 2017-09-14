@@ -39,7 +39,7 @@ GameObject:
   - component: {fileID: 95684755670307074}
   - component: {fileID: 114316657802570146}
   - component: {fileID: 61872839645701960}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Archer.run6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -52,8 +52,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1015183750812822}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.719782, y: -0.25884962, z: 0}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0.5679998, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4688335588227230}

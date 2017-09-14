@@ -18,20 +18,18 @@ public class WaveSpawner : MonoBehaviour
 		//public string name;
 		public int count;
 		public float rate;
-		public Transform enemy;
+		public Transform[] enemy;
 	}
 
-	private int numberOfTimesLooped;
-
 	public Wave[] waves;
-	private int nextWave = 0;
+	private int nextWave;
 
 	[HideInInspector] public int enemiesInThisWave;
 
 	public Transform[] spawnPoints;
 
 	private float searchCountdown = 1f;
-
+	
 	private SpawnState state = SpawnState.WAITING;
 
 	private void Start()
@@ -46,13 +44,11 @@ public class WaveSpawner : MonoBehaviour
 
 	private void Awake()
 	{
-		numberOfTimesLooped = 0;
+		nextWave = -1;
 	}
 
 	private void Update()
 	{
-		
-
 		if (enemiesInThisWave == 0)
 		{
 			state = SpawnState.WAITING;
@@ -92,6 +88,19 @@ public class WaveSpawner : MonoBehaviour
 	{
 		if (state == SpawnState.WAITING)
 		{
+			
+
+			if(nextWave + 1 > waves.Length - 1)
+			{
+				nextWave = 0;
+			}
+			else
+			{
+				nextWave++;
+			}
+			
+			Debug.Log("Starting wave " + nextWave);
+			
 			StartCoroutine(SpawnWave(waves[nextWave]));
 
 			GetComponent<GameLogic>().castleHealth = GetComponent<GameLogic>().castleMaxHealth;
@@ -118,11 +127,12 @@ public class WaveSpawner : MonoBehaviour
 	IEnumerator SpawnWave(Wave _wave)
 	{
 		state = SpawnState.SPAWNING;
+		
 		hasBeenRewardedThisRound = false;
 		for (int i = 0; i < _wave.count; i++)
 		{
 			//Debug.Log(numberOfTimesLooped);
-			SpawnEnemy(_wave.enemy, _wave.count);
+			SpawnEnemy(_wave.enemy[Random.Range(0, _wave.enemy.Length)], _wave.count);
 			yield return new WaitForSeconds(1f / Random.Range(_wave.rate-.2f, _wave.rate+.2f));
 		}
 
@@ -140,16 +150,6 @@ public class WaveSpawner : MonoBehaviour
 			hasBeenRewardedThisRound = true;
 		}
 
-
-		if(nextWave + 1 > waves.Length - 1)
-		{
-			nextWave = 0;
-			numberOfTimesLooped++;
-		}
-		else
-		{
-			nextWave++;
-		}
 	}
 
 	void SpawnEnemy (Transform _enemy, int count)
