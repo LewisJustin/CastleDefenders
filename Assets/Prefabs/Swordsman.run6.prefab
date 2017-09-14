@@ -23,7 +23,7 @@ GameObject:
   - component: {fileID: 95725516715986660}
   - component: {fileID: 114414307929319186}
   - component: {fileID: 61410234922361392}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: Swordsman.run6
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -39,7 +39,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4213121724224138}
   - component: {fileID: 114641431834084932}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: RayOrigin
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -149,7 +149,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toHit:
     serializedVersion: 2
-    m_Bits: 260
+    m_Bits: 2052
   distanceBetweenEnemies: 3
 --- !u!212 &212662236517964920
 SpriteRenderer:

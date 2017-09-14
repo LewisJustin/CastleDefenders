@@ -20,7 +20,6 @@ public class EnemyLogic : MonoBehaviour
 	[HideInInspector]public bool hasArrived;
     [HideInInspector]private float OriginalSpeed;
 	#endregion
-	
 
 	private void Awake()
 	{

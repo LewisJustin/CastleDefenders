@@ -3089,7 +3089,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55a1b1ec1bb23b54bb97067a0ee5efdf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  panel: {fileID: 1228304916}
+  storePanel: {fileID: 1228304916}
   waves:
   - count: 2
     rate: 1
