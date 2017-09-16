@@ -33,12 +33,12 @@ public class BowLogic : MonoBehaviour {
 
 			projectile.name = "Arrow";
 
-			if(animator.GetCurrentAnimatorClipInfo(0).Length == .75f)
+			if(animator.GetCurrentAnimatorStateInfo(0).length == .75f)
 				projectile.velocity = transform.TransformDirection(Vector3.right * arrowSpeed);
 
 
-			if(animator.GetCurrentAnimatorClipInfo(0).Length == 1)
-				projectile.velocity = transform.TransformDirection(Vector3.right * arrowSpeed/2);
+			if(animator.GetCurrentAnimatorStateInfo(0).length == 1f)
+				projectile.velocity = transform.TransformDirection(Vector3.right * (arrowSpeed/2));
 		}
 
         if (Input.GetMouseButton(0) && canShoot == true)
