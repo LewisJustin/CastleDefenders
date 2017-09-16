@@ -5,7 +5,7 @@ public class RayCasting : MonoBehaviour {
 
 	//public float castingRate = 1.5f;
 	public LayerMask toHit;
-	[HideInInspector]public float distanceBetweenEnemies = 2f;
+	public float distanceBetweenEnemies;
 
 	Transform firePoint;
 	

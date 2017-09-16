@@ -150,7 +150,7 @@ MonoBehaviour:
   toHit:
     serializedVersion: 2
     m_Bits: 2052
-  distanceBetweenEnemies: 3
+  distanceBetweenEnemies: 2
 --- !u!212 &212662236517964920
 SpriteRenderer:
   m_ObjectHideFlags: 1
