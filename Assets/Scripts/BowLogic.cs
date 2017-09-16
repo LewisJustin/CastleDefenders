@@ -44,8 +44,6 @@ public class BowLogic : MonoBehaviour {
         if (Input.GetMouseButton(0) && canShoot == true)
         {
             animator.SetBool("isCharging", true);
-			
-			Debug.Log(animator.GetCurrentAnimatorStateInfo(0).length);
         }
 
 	}

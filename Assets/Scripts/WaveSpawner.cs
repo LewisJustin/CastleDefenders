@@ -9,7 +9,8 @@ public class WaveSpawner : MonoBehaviour
 	private bool hasBeenRewardedThisRound = false;
 
 	[SerializeField] GameObject storePanel;
-
+	[SerializeField] GameObject saveButton;
+	[SerializeField] GameObject loadButton;
 
 	//enums, in this case, is a variable
 	//where you can have multiple states
@@ -55,10 +56,17 @@ public class WaveSpawner : MonoBehaviour
 		{
 			state = SpawnState.WAITING;
 			storePanel.SetActive(true);
+
+			saveButton.SetActive(true);
+			loadButton.SetActive(true);
+
 			WaveCompleted();
 		}
 		else
 		{
+			saveButton.SetActive(false);
+			loadButton.SetActive(false);
+
 			storePanel.SetActive(false);
 		}
 	}
