@@ -3298,7 +3298,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   optionsPanel: {fileID: 594094721}
   bow: {fileID: 559339124}
-  audioSource: {fileID: 0}
+  audioSource: {fileID: 1228304916}
 --- !u!1 &1111037431
 GameObject:
   m_ObjectHideFlags: 0
