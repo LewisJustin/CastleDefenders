@@ -7,8 +7,6 @@ public class BowLogic : MonoBehaviour {
 	[SerializeField] Rigidbody2D ProjectilePrefab;
     [SerializeField] Animator animator;
 
-	private float startTime = 0f;
-
 	public float bowDrawSpeed;
     public int arrowSpeed;
 
@@ -18,7 +16,6 @@ public class BowLogic : MonoBehaviour {
     void Awake()
     {
         animator = GetComponentInChildren<Animator>();
-		startTime = 0f;
     }
 
 	void Update()
