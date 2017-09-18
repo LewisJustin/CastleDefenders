@@ -8,6 +8,7 @@ public class optionsScript : MonoBehaviour {
 	[SerializeField] private GameObject optionsPanel;
 	[SerializeField] private GameObject bow;
 	[SerializeField] private GameObject audioSource;
+	[SerializeField] private GameObject audioManager;
 	private bool tempAimingReversed;
 
 	//Called when options button is
@@ -29,6 +30,6 @@ public class optionsScript : MonoBehaviour {
 
 	public void OnVolumeSliderChanged(float newValue)
 	{
-		audioSource.GetComponent<AudioSource>().volume = newValue;
+		audioManager.GetComponent<AudioManager>().OnVolumeChanged(newValue);
 	}
 }

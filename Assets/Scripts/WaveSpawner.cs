@@ -12,6 +12,8 @@ public class WaveSpawner : MonoBehaviour
 	[SerializeField] GameObject saveButton;
 	[SerializeField] GameObject loadButton;
 
+	[SerializeField] GameObject audioManager;
+
 	//enums, in this case, is a variable
 	//where you can have multiple states
 	//In the same way a bool can have 2
@@ -120,6 +122,7 @@ public class WaveSpawner : MonoBehaviour
 	{
 		state = SpawnState.WAITING;
 		//waveCountdown = timeBetweenWaves;
+		audioManager.GetComponent<AudioManager>().Play("EndWave");
 
 		//Resets castle health
 		GetComponent<GameLogic>().castleHealth = GetComponent<GameLogic>().castleMaxHealth;
