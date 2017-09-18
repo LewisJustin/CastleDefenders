@@ -6,7 +6,19 @@ public class AudioManager : MonoBehaviour {
 
 	public Sound[] sounds;
 
+	public static AudioManager audioManager;
+
 	void Awake () {
+		if(audioManager == null)
+			audioManager = this;
+		else
+		{
+			Destroy(gameObject);
+			return;
+		}
+
+		DontDestroyOnLoad(gameObject);
+
 		foreach(Sound s in sounds)
 		{
 			s.source = gameObject.AddComponent<AudioSource>();
@@ -30,7 +42,7 @@ public class AudioManager : MonoBehaviour {
 		Sound s = Array.Find(sounds, sound => sound.name == name);
 		if (s==null)
 		{
-			Debug.Log("No audio of name " + s.name)
+			Debug.LogWarning("No audio of name " + name);
 			return;
 		}
 		s.source.Play();
