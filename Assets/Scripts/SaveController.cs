@@ -17,6 +17,7 @@ public class SaveController : MonoBehaviour {
 	[SerializeField] private GameObject gameManager;
 	[SerializeField] private GameObject bow;
 	[SerializeField] private GameObject arrowPrefab;
+	[SerializeField] private GameObject audioManager;
 
 	//Singleton manager
 	private void Awake()
@@ -45,6 +46,8 @@ public class SaveController : MonoBehaviour {
 		data.bowDrawSpeed = bow.GetComponent<BowLogic>().bowDrawSpeed;
 		data.castleArmor = gameManager.GetComponent<GameLogic>().castleArmour;
 		data.bowDamage = arrowPrefab.GetComponent<ArrowLogic>().damage;
+		data.reverseAiming = bow.GetComponent<Rotate>().aimingReversed;
+		data.volume = audioManager.GetComponent<AudioManager>().volume;
 
 		// writes the object to the file and closes it
 		bf.Serialize(file, data);
@@ -66,7 +69,9 @@ public class SaveController : MonoBehaviour {
 			bow.GetComponent<BowLogic>().bowDrawSpeed = data.bowDrawSpeed;
 			gameManager.GetComponent<GameLogic>().castleArmour = data.castleArmor;
 			arrowPrefab.GetComponent<ArrowLogic>().damage = data.bowDamage;
+			bow.GetComponent<Rotate>().aimingReversed = data.reverseAiming;
 
+			audioManager.GetComponent<AudioManager>().OnVolumeChanged(data.volume);
 		}
 	}
 
@@ -89,4 +94,6 @@ class PlayerData
 	public float bowDrawSpeed;
 	public int castleArmor;
 	public int bowDamage;
+	public float volume;
+	public bool reverseAiming;
 }

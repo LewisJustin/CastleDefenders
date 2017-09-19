@@ -8,6 +8,8 @@ public class AudioManager : MonoBehaviour {
 
 	public static AudioManager audioManager;
 
+	[HideInInspector] public float volume;
+
 	void Awake () {
 		if(audioManager == null)
 			audioManager = this;
@@ -26,6 +28,7 @@ public class AudioManager : MonoBehaviour {
 
 			s.source.pitch = s.pitch;
 			s.source.loop = s.loop;
+			s.source.playOnAwake = s.playOnAwake;
 		}
 	}
 
@@ -35,6 +38,7 @@ public class AudioManager : MonoBehaviour {
 		{
 			s.source.volume = newVolume;
 		}
+		volume = newVolume;
 	}
 
 	public void Play(string name)

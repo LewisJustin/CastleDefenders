@@ -8,6 +8,8 @@ public class Sound
 
 	public AudioClip clip;
 
+	public bool playOnAwake;
+
 	[Range(.1f, 3f)]
 	public float pitch;
 	public bool loop;

@@ -122,7 +122,6 @@ public class WaveSpawner : MonoBehaviour
 	{
 		state = SpawnState.WAITING;
 		//waveCountdown = timeBetweenWaves;
-		audioManager.GetComponent<AudioManager>().Play("EndWave");
 
 		//Resets castle health
 		GetComponent<GameLogic>().castleHealth = GetComponent<GameLogic>().castleMaxHealth;
@@ -130,6 +129,7 @@ public class WaveSpawner : MonoBehaviour
 		if (!hasBeenRewardedThisRound)
 		{
 			GetComponent<GameLogic>().currency += 100;
+			audioManager.GetComponent<AudioManager>().Play("EndWave");
 			hasBeenRewardedThisRound = true;
 		}
 
