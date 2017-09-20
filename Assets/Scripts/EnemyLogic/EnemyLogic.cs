@@ -24,7 +24,8 @@ public class EnemyLogic : MonoBehaviour
 	public enum EnemyState {MOVING, WAITING, ATTACKING}
 
 	private EnemyState state = EnemyState.MOVING;
-	private EnemyState tempState;
+
+	private bool delay;
 
 	private void Awake()
 	{
@@ -42,10 +43,6 @@ public class EnemyLogic : MonoBehaviour
 			speed = 20f;
 		else if (transform.position.x >= -35)
 			speed = OriginalSpeed;
-
-		//for a lazy callback method
-		tempState = state;
-
 
 		if (health <= 0)
 		{
@@ -106,16 +103,6 @@ public class EnemyLogic : MonoBehaviour
 		}
 		#endregion
 
-		//2nd part to lazy callback method
-		if(tempState != state)
-		{
-			tempState = state;
-			ChangeAttackingState();
-		}
-	}
-
-	private void ChangeAttackingState()
-	{
 		if(state == EnemyState.WAITING)
 		{
 			animator.SetBool("startWaiting", true);
