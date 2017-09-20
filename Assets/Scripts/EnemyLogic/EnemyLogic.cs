@@ -43,10 +43,6 @@ public class EnemyLogic : MonoBehaviour
 		else if (transform.position.x >= -35)
 			speed = OriginalSpeed;
 
-		//for a lazy callback method
-		tempState = state;
-
-
 		if (health <= 0)
 		{
 			GameManager.GetComponent<WaveSpawner>().enemiesInThisWave--;
@@ -69,10 +65,12 @@ public class EnemyLogic : MonoBehaviour
 				{
 					state = EnemyState.MOVING;
 					transform.Translate(Vector3.right * speed * Time.deltaTime);
+					ChangeAttackingState(state);
 				}
 				else
 				{
 					state = EnemyState.WAITING;
+					ChangeAttackingState(state);
 				}
 			}
 			else
@@ -80,6 +78,7 @@ public class EnemyLogic : MonoBehaviour
 				StartCoroutine(StartAttackingMelee());
 				hasArrived = true;
 				state = EnemyState.ATTACKING;
+				ChangeAttackingState(state);
 			}
 		}
 
@@ -91,10 +90,12 @@ public class EnemyLogic : MonoBehaviour
 				{
 					transform.Translate(Vector3.right * speed * Time.deltaTime);
 					state = EnemyState.MOVING;
+					ChangeAttackingState(state);
 				}
 				else
 				{
 					state = EnemyState.WAITING;
+					ChangeAttackingState(state);
 				}
 			}
 			else
@@ -102,37 +103,37 @@ public class EnemyLogic : MonoBehaviour
 				StartCoroutine(StartAttackingRanged());
 				hasArrived = true;
 				state = EnemyState.ATTACKING;
+				ChangeAttackingState(state);
 			}
 		}
 		#endregion
-
-		//2nd part to lazy callback method
-		if(tempState != state)
-		{
-			tempState = state;
-			ChangeAttackingState();
-		}
 	}
 
-	private void ChangeAttackingState()
+	private void ChangeAttackingState(EnemyState _state)
 	{
-		if(state == EnemyState.WAITING)
+		if(_state == EnemyState.WAITING)
 		{
 			animator.SetBool("startWaiting", true);
 			animator.SetBool("startAttacking", false);
 			animator.SetBool("startRunning", false);
+			animator.SetBool("isAttacking", false);
+			animator.SetBool("isRunning", false);
 		}
-		else if(state == EnemyState.ATTACKING)
+		else if(_state == EnemyState.ATTACKING)
 		{
 			animator.SetBool("startWaiting", false);
 			animator.SetBool("startAttacking", true);
 			animator.SetBool("startRunning", false);
+			animator.SetBool("isAttacking", true);
+			animator.SetBool("isRunning", false);
 		}
-		else if (state == EnemyState.MOVING)
+		else if (_state == EnemyState.MOVING)
 		{
 			animator.SetBool("startWaiting", false);
 			animator.SetBool("startAttacking", false);
 			animator.SetBool("startRunning", true);
+			animator.SetBool("isAttacking", false);
+			animator.SetBool("isRunning", true);
 		}
 		else
 			Debug.LogWarning("Something went wrong");
