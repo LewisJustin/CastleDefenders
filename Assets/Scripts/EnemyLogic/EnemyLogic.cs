@@ -21,16 +21,18 @@ public class EnemyLogic : MonoBehaviour
     [HideInInspector]private float OriginalSpeed;
 	#endregion
 
+	public enum EnemyState {MOVING, WAITING, ATTACKING}
+
+	private EnemyState state = EnemyState.MOVING;
+	private EnemyState tempState;
+
 	private void Awake()
 	{
 		hasArrived = false;
         OriginalSpeed = speed;
 
         GameManager = GameObject.Find("GameManager");
-        animator = GetComponent<Animator>();
-
-        animator.SetBool("isAtTarget", false);
-        
+        animator = GetComponent<Animator>();        
 	}
 
 	void Update()
@@ -40,6 +42,9 @@ public class EnemyLogic : MonoBehaviour
 			speed = 20f;
 		else if (transform.position.x >= -35)
 			speed = OriginalSpeed;
+
+		//for a lazy callback method
+		tempState = state;
 
 
 		if (health <= 0)
@@ -58,15 +63,23 @@ public class EnemyLogic : MonoBehaviour
 		#region GettingToLocation
 		if (!ranged && !hasArrived)
 		{
-			if (transform.position.x < 5)
+			if (transform.position.x < 5.1f)
 			{
 				if(canMove)
+				{
+					state = EnemyState.MOVING;
 					transform.Translate(Vector3.right * speed * Time.deltaTime);
+				}
+				else
+				{
+					state = EnemyState.WAITING;
+				}
 			}
 			else
 			{
 				StartCoroutine(StartAttackingMelee());
 				hasArrived = true;
+				state = EnemyState.ATTACKING;
 			}
 		}
 
@@ -75,20 +88,58 @@ public class EnemyLogic : MonoBehaviour
 			if (transform.position.x < Random.Range(.8f, 1.2f))
 			{
 				if(canMove)
+				{
 					transform.Translate(Vector3.right * speed * Time.deltaTime);
+					state = EnemyState.MOVING;
+				}
+				else
+				{
+					state = EnemyState.WAITING;
+				}
 			}
 			else
 			{
 				StartCoroutine(StartAttackingRanged());
 				hasArrived = true;
+				state = EnemyState.ATTACKING;
 			}
 		}
 		#endregion
+
+		//2nd part to lazy callback method
+		if(tempState != state)
+		{
+			tempState = state;
+			ChangeAttackingState();
+		}
+	}
+
+	private void ChangeAttackingState()
+	{
+		if(state == EnemyState.WAITING)
+		{
+			animator.SetBool("startWaiting", true);
+			animator.SetBool("startAttacking", false);
+			animator.SetBool("startRunning", false);
+		}
+		else if(state == EnemyState.ATTACKING)
+		{
+			animator.SetBool("startWaiting", false);
+			animator.SetBool("startAttacking", true);
+			animator.SetBool("startRunning", false);
+		}
+		else if (state == EnemyState.MOVING)
+		{
+			animator.SetBool("startWaiting", false);
+			animator.SetBool("startAttacking", false);
+			animator.SetBool("startRunning", true);
+		}
+		else
+			Debug.LogWarning("Something went wrong");
 	}
 
 	IEnumerator StartAttackingMelee()
 	{
-        animator.SetBool("isAtTarget", true);
 		while (health > 0)
 		{
 			GameManager.GetComponent<GameLogic>().castleTakeDamage(damage);
@@ -99,7 +150,6 @@ public class EnemyLogic : MonoBehaviour
 
 	IEnumerator StartAttackingRanged()
 	{
-        animator.SetBool("isAtTarget", true);
         while (health > 0)
 		{
 			Rigidbody2D newArrow = Instantiate(archerArrow, new Vector3 (3,-3,0), Quaternion.Euler(transform.rotation.x, transform.rotation.y - 180f, transform.rotation.z));
