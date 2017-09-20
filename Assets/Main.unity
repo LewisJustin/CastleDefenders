@@ -1749,7 +1749,7 @@ MonoBehaviour:
   bow: {fileID: 559339124}
   arrowPrefab: {fileID: 1963600041905564, guid: adebdb87a8a7c2d4bbf1d4fea758fdf3,
     type: 2}
-  audioManager: {fileID: 0}
+  audioManager: {fileID: 1959315765}
 --- !u!4 &620413582
 Transform:
   m_ObjectHideFlags: 0
@@ -3753,6 +3753,10 @@ MonoBehaviour:
   - count: 2
     rate: 1.5
     enemy:
+    - {fileID: 4544439514759020, guid: a89c62b741551564c8e318997a1e0bb3, type: 2}
+  - count: 2
+    rate: 1.5
+    enemy:
     - {fileID: 4688335588227230, guid: e8877924b2e992447a589adb55d49d4e, type: 2}
   - count: 4
     rate: 1.5
@@ -4716,7 +4720,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 595.63086, y: -426.8501}
+  m_AnchoredPosition: {x: 595.63086, y: -426.85013}
   m_SizeDelta: {x: 320, y: 40}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1629431027
