@@ -57,7 +57,6 @@ public class WaveSpawner : MonoBehaviour
 		if (enemiesInThisWave == 0)
 		{
 			state = SpawnState.WAITING;
-			storePanel.SetActive(true);
 
 			saveButton.SetActive(true);
 			loadButton.SetActive(true);
@@ -68,8 +67,6 @@ public class WaveSpawner : MonoBehaviour
 		{
 			saveButton.SetActive(false);
 			loadButton.SetActive(false);
-
-			storePanel.SetActive(false);
 		}
 	}
 	
@@ -89,6 +86,8 @@ public class WaveSpawner : MonoBehaviour
 			{
 				nextWave++;
 			}
+
+			storePanel.SetActive(false);
 			
 			//Starts Spawning the wave
 			StartCoroutine(SpawnWave(waves[nextWave]));
