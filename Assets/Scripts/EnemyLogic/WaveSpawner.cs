@@ -11,6 +11,7 @@ public class WaveSpawner : MonoBehaviour
 	[SerializeField] GameObject storePanel;
 	[SerializeField] GameObject saveButton;
 	[SerializeField] GameObject loadButton;
+	[SerializeField] Transform enemyParent;
 
 	[SerializeField] GameObject audioManager;
 
@@ -144,6 +145,7 @@ public class WaveSpawner : MonoBehaviour
 		//Instantiates enemy a the selected spawnpoint from before
 		Transform newObject = Instantiate(_enemy, _sp.position, _sp.rotation);
 		newObject.name = "Enemy";
+		newObject.SetParent(enemyParent);
 	}
 
 }
