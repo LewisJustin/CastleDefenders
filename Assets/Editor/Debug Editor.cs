@@ -6,11 +6,6 @@ public class DebugEditor : EditorWindow
 {
 	List<GameObject> enemies;
 
-	public void addEnemy(GameObject _enemy)
-	{
-		enemies.Add(_enemy);
-	}
-
 	[MenuItem("Window/Debug")]
 	public static void ShowWindow()
 	{
@@ -19,11 +14,6 @@ public class DebugEditor : EditorWindow
 
 	void OnGUI()
 	{
-		ScriptableObject target = this;
-		SerializedObject so = new SerializedObject(target);
-		SerializedProperty stringsProperty = so.FindProperty("enemies");
-		EditorGUILayout.PropertyField(stringsProperty, true);
-
 		GUILayout.Label("Cheat Mode", EditorStyles.boldLabel);
 		GUILayout.BeginHorizontal();
 			if (GUILayout.Button("Coins"))
@@ -51,15 +41,22 @@ public class DebugEditor : EditorWindow
 			}
 		GUILayout.EndHorizontal();
 	
+		GUILayout.Label("Enemies", EditorStyles.boldLabel);
+
 		if(GUILayout.Button("Refresh Enemies"))
 		{
+			enemies.Clear();
 			for (int i = 0; i < GameObject.Find("EnemyParent").transform.childCount; i++)
 			{
 				enemies.Add(GameObject.Find("EnemyParent").transform.GetChild(i).gameObject);
 			}
+
+			for (int i = 0; i < GameObject.Find("EnemyParent").transform.childCount; i++)
+			{
+				Debug.Log(enemies[i]);
+				EditorGUILayout.TextArea(enemies[i] + "");
+			}
 		}
-
-
 		
 	}
 }

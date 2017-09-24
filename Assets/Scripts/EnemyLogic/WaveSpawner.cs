@@ -143,9 +143,9 @@ public class WaveSpawner : MonoBehaviour
 		//able to spawn from there, though we will have to change this slightly
 		Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
 		//Instantiates enemy a the selected spawnpoint from before
-		Transform newObject = Instantiate(_enemy, _sp.position, _sp.rotation);
-		newObject.name = "Enemy";
-		newObject.SetParent(enemyParent);
+		Transform newEnemy = Instantiate(_enemy, _sp.position, _sp.rotation);
+		newEnemy.name = "Enemy" + (enemiesInThisWave - 1);
+		newEnemy.SetParent(enemyParent);
 	}
 
 }
