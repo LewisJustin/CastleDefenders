@@ -44,11 +44,6 @@ public class EnemyLogic : MonoBehaviour
 			goingRight = true;
 		else
 			goingRight = false;
-
-		if(!goingRight)
-			transform.GetComponent<SpriteRenderer>().flipX = true;
-		else
-			transform.GetComponent<SpriteRenderer>().flipX = false;
 	}
 
 	void Update()
@@ -60,6 +55,8 @@ public class EnemyLogic : MonoBehaviour
 				speed = 20f;
 			else if (transform.position.x >= -35)
 				speed = OriginalSpeed;
+
+			transform.GetComponent<SpriteRenderer>().flipX = false;
 		}
 		if(!goingRight)
 		{
@@ -67,6 +64,8 @@ public class EnemyLogic : MonoBehaviour
 				speed = 20f;
 			else if (transform.position.x <= 30)
 				speed = OriginalSpeed;
+
+			transform.GetComponent<SpriteRenderer>().flipX = true;
 		}
 		
 
@@ -129,7 +128,7 @@ public class EnemyLogic : MonoBehaviour
 		}
 		if (ranged && !hasArrived && goingRight)
 		{
-			if (transform.position.x < Random.Range(.8f, 1.2f))
+			if (transform.position.x < 1f)
 			{
 				if(canMove)
 				{
@@ -151,7 +150,7 @@ public class EnemyLogic : MonoBehaviour
 
 		if (ranged && !hasArrived && !goingRight)
 		{
-			if (transform.position.x > 1f)
+			if (transform.position.x > 11f)
 			{
 				if(canMove)
 				{

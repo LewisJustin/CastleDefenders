@@ -135,14 +135,14 @@ public class WaveSpawner : MonoBehaviour
 
 	}
 
-	public void SpawnIndividualEnemy(int direction, Object enemy)
+	public void SpawnIndividualEnemy(int direction, Transform _enemy)
 	{
 		if(direction == 0)
 		{
 			Transform _sp = spawnPoints[0];
 			//Instantiates enemy a the selected spawnpoint from before
-			Transform newEnemy = Instantiate((Transform)enemy, _sp.position, _sp.rotation);
-			newEnemy.name = "Custom Enemy";
+			Transform newEnemy = Instantiate(_enemy, _sp.position, _sp.rotation);
+			newEnemy.gameObject.name = "Custom Enemy";
 			newEnemy.SetParent(enemyParent);
 			newEnemy.GetComponent<EnemyLogic>().SetDirection();
 		}
@@ -150,8 +150,8 @@ public class WaveSpawner : MonoBehaviour
 		{
 			Transform _sp = spawnPoints[Random.Range(0, spawnPoints.Length)];
 			//Instantiates enemy a the selected spawnpoint from before
-			Transform _newEnemy = Instantiate(enemy, _sp.position, _sp.rotation) as Transform;
-			_newEnemy.name = "Custom Enemy";
+			Transform _newEnemy = Instantiate(_enemy, _sp.position, _sp.rotation);
+			_newEnemy.gameObject.name = "Custom Enemy";
 			_newEnemy.SetParent(enemyParent);
 			_newEnemy.GetComponent<EnemyLogic>().SetDirection();
 		}
@@ -160,8 +160,8 @@ public class WaveSpawner : MonoBehaviour
 			//spawn enemy on the right
 			Transform _sp = spawnPoints[1];
 			//Instantiates enemy a the selected spawnpoint from before
-			Transform newEnemy = Instantiate((Transform)enemy, _sp.position, _sp.rotation);
-			newEnemy.name = "Custom Enemy";
+			Transform newEnemy = Instantiate(_enemy, _sp.position, _sp.rotation);
+			newEnemy.gameObject.name = "Custom Enemy";
 			newEnemy.SetParent(enemyParent);
 			newEnemy.GetComponent<EnemyLogic>().SetDirection();
 		}

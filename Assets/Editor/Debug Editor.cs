@@ -5,8 +5,9 @@ using System.Collections.Generic;
 public class DebugEditor : EditorWindow
 {
 	List<GameObject> enemies;
-	public Object[] prefabs = new Object[2];
+	public Transform[] prefabs = new Transform[2];
 
+	int hSliderValue;
 
 	[MenuItem("Window/Debug")]
 	public static void ShowWindow()
@@ -46,19 +47,19 @@ public class DebugEditor : EditorWindow
 		
 		for (int i = 0; i < 2; i++)
 		{
-			prefabs[i] = EditorGUILayout.ObjectField(prefabs[i], typeof(Object), false);
+			prefabs[i] = (Transform)EditorGUILayout.ObjectField(prefabs[i], typeof(Transform), false);
 		}
 
 		GUILayout.Label("Enemies", EditorStyles.boldLabel);
-		int direction = (int)GUILayout.HorizontalSlider(1, 0, 2);
+		hSliderValue = (int)GUILayout.HorizontalSlider(hSliderValue, 0f, 2f);
 
 		if(GUILayout.Button("Spawn Bow Man") && Application.isPlaying)
 		{
-			GameObject.Find("GameManager").GetComponent<WaveSpawner>().SpawnIndividualEnemy(direction, prefabs[1]);
+			GameObject.Find("GameManager").GetComponent<WaveSpawner>().SpawnIndividualEnemy(hSliderValue, prefabs[0]);
 		}
 		if(GUILayout.Button("Spawn Swordsman") && Application.isPlaying)
 		{
-			Debug.Log("Spawn Swordsman");
+			GameObject.Find("GameManager").GetComponent<WaveSpawner>().SpawnIndividualEnemy(hSliderValue, prefabs[1]);
 		}
 		if(GUILayout.Button("Spawn Dragon") && Application.isPlaying)
 		{
