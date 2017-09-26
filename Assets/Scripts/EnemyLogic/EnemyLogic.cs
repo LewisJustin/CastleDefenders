@@ -107,7 +107,7 @@ public class EnemyLogic : MonoBehaviour
 
 		if (!ranged && !hasArrived && !goingRight)
 		{
-			if (transform.position.x > 11f)
+			if (transform.position.x > 10.5f)
 			{
 				if(canMove)
 				{
@@ -150,7 +150,7 @@ public class EnemyLogic : MonoBehaviour
 
 		if (ranged && !hasArrived && !goingRight)
 		{
-			if (transform.position.x > 11f)
+			if (transform.position.x > 14f)
 			{
 				if(canMove)
 				{
@@ -208,15 +208,30 @@ public class EnemyLogic : MonoBehaviour
 	{
         while (health > 0)
 		{
-			Rigidbody2D newArrow = Instantiate(archerArrow, new Vector3 (3,-3,0), Quaternion.Euler(transform.rotation.x, transform.rotation.y - 180f, transform.rotation.z));
+			if(goingRight)
+			{
+				Rigidbody2D newArrow = Instantiate(archerArrow, new Vector3 (3,-3,0), Quaternion.Euler(transform.rotation.x, transform.rotation.y - 180f, transform.rotation.z));
 
-			newArrow.name = "Enemy Arrow";
+				newArrow.name = "Enemy Arrow";
 
-			newArrow.velocity = transform.TransformDirection(Vector3.right * 20);
+				newArrow.velocity = transform.TransformDirection(Vector3.right * 20);
 
-			GameManager.GetComponent<GameLogic>().castleTakeDamage(damage);
+				GameManager.GetComponent<GameLogic>().castleTakeDamage(damage);
 
-			yield return new WaitForSeconds(3f);
+				yield return new WaitForSeconds(3f);
+			}
+			else
+			{
+				Rigidbody2D newArrow = Instantiate(archerArrow, new Vector3 (13.5f,-3,0), Quaternion.Euler(transform.rotation.x, transform.rotation.y, transform.rotation.z));
+
+				newArrow.name = "Enemy Arrow";
+
+				newArrow.velocity = transform.TransformDirection(Vector3.left * 20);
+
+				GameManager.GetComponent<GameLogic>().castleTakeDamage(damage);
+
+				yield return new WaitForSeconds(3f);
+			}
 		}
 	}
 

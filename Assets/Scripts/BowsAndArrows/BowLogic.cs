@@ -20,6 +20,9 @@ public class BowLogic : MonoBehaviour {
 
 	void Update()
 	{
+		bowDrawSpeed = Mathf.Clamp(bowDrawSpeed, .25f, 100f);
+
+
 		if (EventSystem.current.IsPointerOverGameObject())
 			return;
 

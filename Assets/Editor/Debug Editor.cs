@@ -6,45 +6,60 @@ public class DebugEditor : EditorWindow
 {
 	List<GameObject> enemies;
 	public Transform[] prefabs = new Transform[2];
+	private GameObject arrowPrefab;
 
 	int hSliderValue;
+	public string coinsToAdd;
 
 	[MenuItem("Window/Debug")]
 	public static void ShowWindow()
 	{
 		GetWindow<DebugEditor>("Debug");
 	}
-
+	Vector2 scrollPos;
 	void OnGUI()
 	{
+		scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
+
 		GUILayout.Label("Cheat Mode", EditorStyles.boldLabel);
 		GUILayout.BeginHorizontal();
-			if (GUILayout.Button("Coins"))
+
+			coinsToAdd = EditorGUILayout.TextField(coinsToAdd, GUILayout.Width(30), GUILayout.Height(20));
+
+			int n;
+			bool isNumeric = int.TryParse(coinsToAdd, out n);
+
+			if (GUILayout.Button("+", GUILayout.Width(20), GUILayout.Height(20)) && isNumeric && Application.isPlaying)
 			{
-				Debug.Log("Give Me Coins!!!");
+				GameObject.Find("GameManager").GetComponent<GameLogic>().currency += n;
 			}
-
-			if (GUILayout.Button("Bow Speed!"))
+			
+			if (GUILayout.Button("-", GUILayout.Width(20), GUILayout.Height(20)))
 			{
-				Debug.Log("Give Me Bow Speed!!!");
+				GameObject.Find("GameManager").GetComponent<GameLogic>().currency -= n;
 			}
+		GUILayout.EndHorizontal();
 
-			GUILayout.EndHorizontal();
+			GUILayout.Label("Put arrow here");
+			arrowPrefab = (GameObject)EditorGUILayout.ObjectField(arrowPrefab, typeof(GameObject), false);
 
-			GUILayout.BeginHorizontal();
+
+			if (GUILayout.Button("Bow Speed! (lowest speed)"))
+			{
+				GameObject.Find("Bow").GetComponent<BowLogic>().bowDrawSpeed = .25f;
+			}
 
 			if(GUILayout.Button("Give Me Power!"))
 			{
-				Debug.Log("Add bow damage!!");
+				arrowPrefab.GetComponent<ArrowLogic>().damage += 75;
 			}
 
 			if (GUILayout.Button("Castle Armor!"))
 			{
-				Debug.Log("Give Me Castle Armor!!!");
+				GameObject.Find("GameManager").GetComponent<GameLogic>().castleArmour += 5;
 			}
-		GUILayout.EndHorizontal();
 
-		
+		GUILayout.Label("Archer, then Swordsman");
 		for (int i = 0; i < 2; i++)
 		{
 			prefabs[i] = (Transform)EditorGUILayout.ObjectField(prefabs[i], typeof(Transform), false);
@@ -65,5 +80,7 @@ public class DebugEditor : EditorWindow
 		{
 			Debug.Log("Spawn Dragon");
 		}
+
+		EditorGUILayout.EndScrollView();
 	}
 }
