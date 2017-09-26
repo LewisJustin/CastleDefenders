@@ -24,7 +24,7 @@ public class BowAI : MonoBehaviour {
             Vector2 direction = target.position - transform.position;
 
 			if(transform.rotation.y == 180)
-            	angle = Mathf.Atan2(direction.y, direction.x + 1.8f) * Mathf.Rad2Deg;
+            	angle = Mathf.Atan2(direction.y, direction.x - 1.8f) * Mathf.Rad2Deg;
 			else
 				angle = Mathf.Atan2(direction.y, direction.x + .4f) * Mathf.Rad2Deg;
 
