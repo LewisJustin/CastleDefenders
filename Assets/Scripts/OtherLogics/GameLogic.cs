@@ -17,12 +17,10 @@ public class GameLogic : MonoBehaviour
     #endregion
 
     #region GameObjectReferences
-    [SerializeField]
-    private Text waveNumberText;
-    [SerializeField]
-    private Text currencyText;
-    [SerializeField]
-    private RectTransform castleHealthFill;
+    [SerializeField] private Text waveNumberText;
+    [SerializeField] private Text currencyText;
+    [SerializeField] private RectTransform castleHealthFill;
+    [SerializeField] private GameObject audioManager;
     #endregion
 
     private void Awake()
@@ -60,6 +58,7 @@ public class GameLogic : MonoBehaviour
     private void die(int _waveNumber)
     {
         Dead = true;
+        audioManager.GetComponent<AudioManager>().Play("CastleDestroy");
         Debug.Log("Died on wave " + _waveNumber);
     }
 }

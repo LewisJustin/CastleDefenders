@@ -25,6 +25,8 @@ public class EnemyLogic : MonoBehaviour
 
 	private EnemyState state = EnemyState.MOVING;
 
+	private bool goingRight;
+
 	private bool delay;
 
 	private void Awake()
@@ -36,13 +38,37 @@ public class EnemyLogic : MonoBehaviour
         animator = GetComponent<Animator>();        
 	}
 
+	public void SetDirection()
+	{
+		if (transform.position.x < -35)
+			goingRight = true;
+		else
+			goingRight = false;
+
+		if(!goingRight)
+			transform.GetComponent<SpriteRenderer>().flipX = true;
+		else
+			transform.GetComponent<SpriteRenderer>().flipX = false;
+	}
+
 	void Update()
 	{
 		//prevents bunching at spawn
-		if (transform.position.x < -35)
-			speed = 20f;
-		else if (transform.position.x >= -35)
-			speed = OriginalSpeed;
+		if (goingRight)
+		{
+			if (transform.position.x < -35)
+				speed = 20f;
+			else if (transform.position.x >= -35)
+				speed = OriginalSpeed;
+		}
+		if(!goingRight)
+		{
+			if (transform.position.x > 30)
+				speed = 20f;
+			else if (transform.position.x <= 30)
+				speed = OriginalSpeed;
+		}
+		
 
 		if (health <= 0)
 		{
@@ -58,7 +84,7 @@ public class EnemyLogic : MonoBehaviour
         }
 
 		#region GettingToLocation
-		if (!ranged && !hasArrived)
+		if (!ranged && !hasArrived && goingRight)
 		{
 			if (transform.position.x < 5.1f)
 			{
@@ -80,13 +106,56 @@ public class EnemyLogic : MonoBehaviour
 			}
 		}
 
-		if (ranged && !hasArrived)
+		if (!ranged && !hasArrived && !goingRight)
+		{
+			if (transform.position.x > 11f)
+			{
+				if(canMove)
+				{
+					state = EnemyState.MOVING;
+					transform.Translate(Vector3.left * speed * Time.deltaTime);
+				}
+				else
+				{
+					state = EnemyState.WAITING;
+				}
+			}
+			else
+			{
+				StartCoroutine(StartAttackingMelee());
+				hasArrived = true;
+				state = EnemyState.ATTACKING;
+			}
+		}
+		if (ranged && !hasArrived && goingRight)
 		{
 			if (transform.position.x < Random.Range(.8f, 1.2f))
 			{
 				if(canMove)
 				{
 					transform.Translate(Vector3.right * speed * Time.deltaTime);
+					state = EnemyState.MOVING;
+				}
+				else
+				{
+					state = EnemyState.WAITING;
+				}
+			}
+			else
+			{
+				StartCoroutine(StartAttackingRanged());
+				hasArrived = true;
+				state = EnemyState.ATTACKING;
+			}
+		}
+
+		if (ranged && !hasArrived && !goingRight)
+		{
+			if (transform.position.x > 1f)
+			{
+				if(canMove)
+				{
+					transform.Translate(Vector3.left * speed * Time.deltaTime);
 					state = EnemyState.MOVING;
 				}
 				else
@@ -124,7 +193,8 @@ public class EnemyLogic : MonoBehaviour
 		else
 			Debug.LogWarning("Something went wrong");
 	}
-
+	
+	
 	IEnumerator StartAttackingMelee()
 	{
 		while (health > 0)

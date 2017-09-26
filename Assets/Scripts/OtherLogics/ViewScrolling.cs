@@ -12,7 +12,7 @@ public class ViewScrolling : MonoBehaviour
 			if (transform.position.x < -10)
 				transform.Translate(new Vector3(.1f, 0f, 0f));
 
-			if (transform.position.x > 10)
+			if (transform.position.x > 20)
 				transform.Translate(new Vector3(-.1f, 0f, 0f));
 		}
 	}

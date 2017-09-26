@@ -117,7 +117,7 @@ GameObject:
   m_Component:
   - component: {fileID: 50411000}
   m_Layer: 0
-  m_Name: Enemy SpawnPoint
+  m_Name: Enemy SpawnPoint Left
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2300,10 +2300,10 @@ RectTransform:
   m_Father: {fileID: 1228304917}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 1114.1465, y: -261.3501}
+  m_SizeDelta: {x: 276.4, y: 51}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &734441180
 MonoBehaviour:
@@ -2498,6 +2498,34 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 256813201}
+  m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &811646563
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 811646564}
+  m_Layer: 0
+  m_Name: Enemy SpawnPoint Right
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &811646564
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 811646563}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 50, y: -3.9, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1268435059}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &836612558
@@ -3300,10 +3328,10 @@ RectTransform:
   m_Father: {fileID: 1228304917}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 421.5469, y: -261.3501}
+  m_SizeDelta: {x: 276.4, y: 51}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1007402626
 MonoBehaviour:
@@ -3709,7 +3737,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1228304917
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3896,6 +3924,7 @@ MonoBehaviour:
   waveNumberText: {fileID: 504106929}
   currencyText: {fileID: 1495848460}
   castleHealthFill: {fileID: 126902958}
+  audioManager: {fileID: 0}
 --- !u!114 &1268435058
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3939,6 +3968,7 @@ MonoBehaviour:
   enemiesInThisWave: 0
   spawnPoints:
   - {fileID: 50411000}
+  - {fileID: 811646564}
 --- !u!4 &1268435059
 Transform:
   m_ObjectHideFlags: 0
@@ -3950,6 +3980,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 50411000}
+  - {fileID: 811646564}
   - {fileID: 1502054874}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -4834,7 +4865,7 @@ Transform:
   - {fileID: 187912636}
   - {fileID: 2121527676}
   m_Father: {fileID: 1268435059}
-  m_RootOrder: 1
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1518646704
 GameObject:
@@ -5302,6 +5333,12 @@ MonoBehaviour:
     pitch: 1
     loop: 0
     source: {fileID: 0}
+  - name: CastleDestroy
+    clip: {fileID: 8300000, guid: 448f3f471020ff14fb399dee2b1a8bd0, type: 3}
+    playOnAwake: 0
+    pitch: 1
+    loop: 0
+    source: {fileID: 0}
   volume: 0
 --- !u!4 &1959315767
 Transform:
@@ -5731,10 +5768,10 @@ RectTransform:
   m_Father: {fileID: 1228304917}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 767.8467, y: -261.3501}
+  m_SizeDelta: {x: 276.4, y: 51}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2091021483
 MonoBehaviour:

@@ -5,6 +5,8 @@ using System.Collections.Generic;
 public class DebugEditor : EditorWindow
 {
 	List<GameObject> enemies;
+	public Object[] prefabs = new Object[2];
+
 
 	[MenuItem("Window/Debug")]
 	public static void ShowWindow()
@@ -40,23 +42,27 @@ public class DebugEditor : EditorWindow
 				Debug.Log("Give Me Castle Armor!!!");
 			}
 		GUILayout.EndHorizontal();
-	
-		GUILayout.Label("Enemies", EditorStyles.boldLabel);
 
-		if(GUILayout.Button("Refresh Enemies"))
-		{
-			enemies.Clear();
-			for (int i = 0; i < GameObject.Find("EnemyParent").transform.childCount; i++)
-			{
-				enemies.Add(GameObject.Find("EnemyParent").transform.GetChild(i).gameObject);
-			}
-
-			for (int i = 0; i < GameObject.Find("EnemyParent").transform.childCount; i++)
-			{
-				Debug.Log(enemies[i]);
-				EditorGUILayout.TextArea(enemies[i] + "");
-			}
-		}
 		
+		for (int i = 0; i < 2; i++)
+		{
+			prefabs[i] = EditorGUILayout.ObjectField(prefabs[i], typeof(Object), false);
+		}
+
+		GUILayout.Label("Enemies", EditorStyles.boldLabel);
+		int direction = (int)GUILayout.HorizontalSlider(1, 0, 2);
+
+		if(GUILayout.Button("Spawn Bow Man") && Application.isPlaying)
+		{
+			GameObject.Find("GameManager").GetComponent<WaveSpawner>().SpawnIndividualEnemy(direction, prefabs[1]);
+		}
+		if(GUILayout.Button("Spawn Swordsman") && Application.isPlaying)
+		{
+			Debug.Log("Spawn Swordsman");
+		}
+		if(GUILayout.Button("Spawn Dragon") && Application.isPlaying)
+		{
+			Debug.Log("Spawn Dragon");
+		}
 	}
 }
