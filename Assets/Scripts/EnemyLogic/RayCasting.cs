@@ -8,6 +8,8 @@ public class RayCasting : MonoBehaviour {
 	public float distanceBetweenEnemies;
 
 	Transform firePoint;
+
+	Vector3 position;
 	
 	void Start ()
 	{
@@ -51,7 +53,10 @@ public class RayCasting : MonoBehaviour {
 				
 				//Debug.DrawLine(transform.position, Vector2.right, Color.green);
 
-				RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, distanceBetweenEnemies, toHit);
+				position = transform.position;
+				position.x -= 1f;
+
+				RaycastHit2D hit = Physics2D.Raycast(position, Vector2.left, distanceBetweenEnemies, toHit);
 
 				if (hit.collider != null)
 				{

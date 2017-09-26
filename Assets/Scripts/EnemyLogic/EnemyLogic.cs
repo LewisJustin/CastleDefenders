@@ -23,7 +23,7 @@ public class EnemyLogic : MonoBehaviour
 
 	public enum EnemyState {MOVING, WAITING, ATTACKING}
 
-	private EnemyState state = EnemyState.MOVING;
+	public EnemyState state = EnemyState.MOVING;
 
 	[HideInInspector] public bool goingRight;
 
@@ -35,7 +35,8 @@ public class EnemyLogic : MonoBehaviour
         OriginalSpeed = speed;
 
         GameManager = GameObject.Find("GameManager");
-        animator = GetComponent<Animator>();        
+        animator = GetComponent<Animator>();    
+		canMove = true;    
 	}
 
 	public void SetDirection()
