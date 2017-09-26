@@ -22,23 +22,47 @@ public class RayCasting : MonoBehaviour {
 
 	IEnumerator Shoot()
 	{
-		for (int i = 0; i < 10;)
+		if(transform.parent.GetComponent<EnemyLogic>().goingRight)
 		{
-			yield return new WaitForSeconds(.01f);
-			
-			//Debug.DrawLine(transform.position, Vector2.right, Color.green);
-
-			RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, distanceBetweenEnemies, toHit);
-
-			if (hit.collider != null)
+			for (int i = 0; i < 10;)
 			{
-					transform.parent.GetComponent<EnemyLogic>().canMove = false;
-			}
-			else
-			{
-				transform.parent.GetComponent<EnemyLogic>().canMove = true;
-			}
+				yield return new WaitForSeconds(.01f);
+				
+				//Debug.DrawLine(transform.position, Vector2.right, Color.green);
 
+				RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, distanceBetweenEnemies, toHit);
+
+				if (hit.collider != null)
+				{
+						transform.parent.GetComponent<EnemyLogic>().canMove = false;
+				}
+				else
+				{
+					transform.parent.GetComponent<EnemyLogic>().canMove = true;
+				}
+
+			}
+		}
+		else
+		{
+			for (int i = 0; i < 10;)
+			{
+				yield return new WaitForSeconds(.01f);
+				
+				//Debug.DrawLine(transform.position, Vector2.right, Color.green);
+
+				RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.left, distanceBetweenEnemies, toHit);
+
+				if (hit.collider != null)
+				{
+						transform.parent.GetComponent<EnemyLogic>().canMove = false;
+				}
+				else
+				{
+					transform.parent.GetComponent<EnemyLogic>().canMove = true;
+				}
+
+			}
 		}
 		
 	}

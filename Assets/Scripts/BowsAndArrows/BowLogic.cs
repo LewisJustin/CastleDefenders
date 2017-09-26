@@ -5,12 +5,12 @@ using UnityEngine.EventSystems;
 public class BowLogic : MonoBehaviour {
 
 	[SerializeField] Rigidbody2D ProjectilePrefab;
-    [SerializeField] Animator animator;
+    [SerializeField] public Animator animator;
 
 	public float bowDrawSpeed;
     public int arrowSpeed;
 
-	private bool canShoot = true;
+	[HideInInspector]public bool canShoot = true;
 
 
     void Awake()
@@ -48,6 +48,18 @@ public class BowLogic : MonoBehaviour {
         {
             animator.SetBool("isCharging", true);
         }
+
+	}
+
+	public void Shoot()
+	{
+		StartCoroutine(ShootingCountdown());
+
+		Rigidbody2D projectile = Instantiate(ProjectilePrefab, transform.position, Quaternion.Euler(transform.rotation.x, transform.rotation.y - 180f, transform.rotation.z));
+
+		projectile.name = "Arrow";
+
+		projectile.velocity = transform.TransformDirection(Vector3.right * arrowSpeed);
 
 	}
 	

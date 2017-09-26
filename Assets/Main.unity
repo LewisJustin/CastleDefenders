@@ -1487,6 +1487,7 @@ GameObject:
   - component: {fileID: 559339126}
   - component: {fileID: 559339125}
   - component: {fileID: 559339127}
+  - component: {fileID: 559339128}
   m_Layer: 0
   m_Name: Bow
   m_TagString: Untagged
@@ -1510,6 +1511,7 @@ MonoBehaviour:
   animator: {fileID: 961850105}
   bowDrawSpeed: 1
   arrowSpeed: 20
+  canShoot: 1
 --- !u!4 &559339126
 Transform:
   m_ObjectHideFlags: 0
@@ -1536,6 +1538,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   aimingReversed: 0
+  AIEnabled: 0
+  enemyParent: {fileID: 739242142}
+--- !u!114 &559339128
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 559339124}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa4b2552bb70d694bb2f010a1f0b05c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyParent: {fileID: 739242143}
+  AIEnabled: 0
+  target: {fileID: 0}
 --- !u!1 &581268592
 GameObject:
   m_ObjectHideFlags: 0

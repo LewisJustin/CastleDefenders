@@ -25,7 +25,7 @@ public class EnemyLogic : MonoBehaviour
 
 	private EnemyState state = EnemyState.MOVING;
 
-	private bool goingRight;
+	[HideInInspector] public bool goingRight;
 
 	private bool delay;
 

@@ -17,7 +17,7 @@ public class Rotate : MonoBehaviour {
 
 	void Update ()
 	{
-        if (Input.GetMouseButton(0))
+        if (Input.GetMouseButton(0) && !transform.GetComponent<BowAI>().AIEnabled)
         {
             Vector2 direction = Camera.main.ScreenToWorldPoint(Input.mousePosition) - transform.position;
             if (!aimingReversed)
