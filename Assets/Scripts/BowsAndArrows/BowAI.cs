@@ -9,6 +9,7 @@ public class BowAI : MonoBehaviour {
 	public Transform target;
 	private float angle;
 	public float offset;
+	public float offset2;//
 
 	void Start()
 	{
@@ -18,15 +19,20 @@ public class BowAI : MonoBehaviour {
 
 	void Update ()
 	{
+		if(Input.GetKeyDown("tab"))
+		{
+			AIEnabled = !AIEnabled;
+		}
+
 		if(AIEnabled && enemyParent.transform.childCount > 0)
         {
 			target = enemyParent.gameObject.transform.GetChild(0);
             Vector2 direction = target.position - transform.position;
 
-			if(transform.rotation.y == 180)
-            	angle = Mathf.Atan2(direction.y, direction.x - offset) * Mathf.Rad2Deg;
+			if(enemyParent.transform.GetChild(0).GetComponent<EnemyLogic>().goingRight)
+            	angle = Mathf.Atan2(direction.y, direction.x + -1.4f) * Mathf.Rad2Deg;
 			else
-				angle = Mathf.Atan2(direction.y, direction.x - 1.36f) * Mathf.Rad2Deg;
+				angle = Mathf.Atan2(direction.y, direction.x + .7f) * Mathf.Rad2Deg;
 
             Quaternion rotation = Quaternion.AngleAxis(angle, Vector3.forward);
             transform.rotation = rotation;

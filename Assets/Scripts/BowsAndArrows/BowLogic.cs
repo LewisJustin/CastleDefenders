@@ -26,7 +26,7 @@ public class BowLogic : MonoBehaviour {
 		if (EventSystem.current.IsPointerOverGameObject())
 			return;
 
-		if (Input.GetMouseButtonUp(0) && canShoot == true)
+		if (Input.GetMouseButtonUp(0) && canShoot == true && !transform.GetComponent<BowAI>().AIEnabled)
 		{
             animator.SetBool("isCharging", false);
 
