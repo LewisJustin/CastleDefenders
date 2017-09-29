@@ -41,7 +41,7 @@ GameObject:
   - component: {fileID: 61872839645701960}
   m_Layer: 8
   m_Name: Archer.run6
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136,6 +136,10 @@ MonoBehaviour:
   animator: {fileID: 0}
   canMove: 1
   hasArrived: 0
+  stoppingDistanceRanged: 0
+  stoppingDistanceMelee: 0
+  state: 0
+  goingRight: 0
 --- !u!114 &114599785000651546
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -149,7 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toHit:
     serializedVersion: 2
-    m_Bits: 260
+    m_Bits: 4356
   distanceBetweenEnemies: 2
 --- !u!212 &212102780677890506
 SpriteRenderer:

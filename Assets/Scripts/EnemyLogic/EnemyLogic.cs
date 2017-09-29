@@ -5,7 +5,7 @@ public class EnemyLogic : MonoBehaviour
 {
 
 	#region SerializeVariables
-	[SerializeField] private bool ranged;
+	[SerializeField] public bool ranged;
 	[SerializeField] private float speed;
 	[SerializeField] private Transform coinDrop;
 	[SerializeField] private Rigidbody2D archerArrow;
@@ -19,6 +19,11 @@ public class EnemyLogic : MonoBehaviour
 	[HideInInspector]public bool canMove = true;
 	[HideInInspector]public bool hasArrived;
     [HideInInspector]private float OriginalSpeed;
+
+	[HideInInspector] public float stoppingDistanceRanged;
+	[HideInInspector] public float stoppingDistanceMelee;
+	[HideInInspector] public float stoppingDistanceRangedLeft;
+	[HideInInspector] public float stoppingDistanceMeleeLeft;
 	#endregion
 
 	public enum EnemyState {MOVING, WAITING, ATTACKING}
@@ -36,7 +41,12 @@ public class EnemyLogic : MonoBehaviour
 
         GameManager = GameObject.Find("GameManager");
         animator = GetComponent<Animator>();    
-		canMove = true;    
+		canMove = true; 
+
+		stoppingDistanceRanged = 1f;
+		stoppingDistanceMelee = 0f;
+		stoppingDistanceRangedLeft = 3f;
+		stoppingDistanceMeleeLeft = 0f;
 	}
 
 	public void SetDirection()
@@ -44,7 +54,7 @@ public class EnemyLogic : MonoBehaviour
 		if (transform.position.x < -35)
 			goingRight = true;
 		else
-			goingRight = false;
+			goingRight = false;			
 	}
 
 	void Update()
@@ -84,49 +94,27 @@ public class EnemyLogic : MonoBehaviour
         }
 
 		#region GettingToLocation
-		if (!ranged && !hasArrived && goingRight)
+		if(!hasArrived && !ranged )
 		{
-			if (transform.position.x < 5.1f)
+			if(canMove)
 			{
-				if(canMove)
-				{
-					state = EnemyState.MOVING;
+				if (goingRight)
 					transform.Translate(Vector3.right * speed * Time.deltaTime);
-				}
 				else
-				{
-					state = EnemyState.WAITING;
-				}
+					transform.Translate(Vector3.left * speed * Time.deltaTime);
+				state = EnemyState.MOVING;
 			}
 			else
 			{
-				StartCoroutine(StartAttackingMelee());
-				hasArrived = true;
-				state = EnemyState.ATTACKING;
+				state = EnemyState.WAITING;
 			}
+		}
+		else
+		{
+			state = EnemyState.ATTACKING;
+			StartCoroutine(StartAttackingMelee());
 		}
 
-		if (!ranged && !hasArrived && !goingRight)
-		{
-			if (transform.position.x > 10.5f)
-			{
-				if(canMove)
-				{
-					state = EnemyState.MOVING;
-					transform.Translate(Vector3.left * speed * Time.deltaTime);
-				}
-				else
-				{
-					state = EnemyState.WAITING;
-				}
-			}
-			else
-			{
-				StartCoroutine(StartAttackingMelee());
-				hasArrived = true;
-				state = EnemyState.ATTACKING;
-			}
-		}
 		if (ranged && !hasArrived && goingRight)
 		{
 			if (transform.position.x < 1f)

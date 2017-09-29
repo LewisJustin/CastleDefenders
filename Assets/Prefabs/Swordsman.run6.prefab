@@ -25,7 +25,7 @@ GameObject:
   - component: {fileID: 61410234922361392}
   m_Layer: 11
   m_Name: Swordsman.run6
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -136,6 +136,10 @@ MonoBehaviour:
   animator: {fileID: 95725516715986660}
   canMove: 1
   hasArrived: 0
+  stoppingDistanceRanged: 0
+  stoppingDistanceMelee: 0.3
+  state: 0
+  goingRight: 0
 --- !u!114 &114641431834084932
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -149,7 +153,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toHit:
     serializedVersion: 2
-    m_Bits: 2052
+    m_Bits: 6148
   distanceBetweenEnemies: 2
 --- !u!212 &212662236517964920
 SpriteRenderer:
