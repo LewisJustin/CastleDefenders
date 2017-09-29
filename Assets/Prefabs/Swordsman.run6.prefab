@@ -138,6 +138,8 @@ MonoBehaviour:
   hasArrived: 0
   stoppingDistanceRanged: 0
   stoppingDistanceMelee: 0.3
+  stoppingDistanceRangedLeft: 0
+  stoppingDistanceMeleeLeft: 0
   state: 0
   goingRight: 0
 --- !u!114 &114641431834084932
@@ -153,7 +155,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toHit:
     serializedVersion: 2
-    m_Bits: 6148
+    m_Bits: 2052
+  castleLayer:
+    serializedVersion: 2
+    m_Bits: 4096
   distanceBetweenEnemies: 2
 --- !u!212 &212662236517964920
 SpriteRenderer:

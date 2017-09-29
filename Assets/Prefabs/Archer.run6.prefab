@@ -131,13 +131,15 @@ MonoBehaviour:
   coinDrop: {fileID: 4219273986065312, guid: f74e70a9ce67e6d42a26c309860bf813, type: 2}
   archerArrow: {fileID: 50688467181018026, guid: 32da8c24b05295b4aa1640415cb668e1,
     type: 2}
-  damage: 9
+  damage: 10
   health: 100
   animator: {fileID: 0}
   canMove: 1
   hasArrived: 0
-  stoppingDistanceRanged: 0
+  stoppingDistanceRanged: 1
   stoppingDistanceMelee: 0
+  stoppingDistanceRangedLeft: 1
+  stoppingDistanceMeleeLeft: 0
   state: 0
   goingRight: 0
 --- !u!114 &114599785000651546
@@ -153,7 +155,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   toHit:
     serializedVersion: 2
-    m_Bits: 4356
+    m_Bits: 260
+  castleLayer:
+    serializedVersion: 2
+    m_Bits: 4096
   distanceBetweenEnemies: 2
 --- !u!212 &212102780677890506
 SpriteRenderer:
