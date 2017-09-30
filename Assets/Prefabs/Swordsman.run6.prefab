@@ -129,6 +129,7 @@ MonoBehaviour:
   ranged: 0
   speed: 3
   coinDrop: {fileID: 4219273986065312, guid: f74e70a9ce67e6d42a26c309860bf813, type: 2}
+  powerUp: {fileID: 4249429107046692, guid: 265cbb1ee824d014b80172d409b92a89, type: 2}
   archerArrow: {fileID: 50688467181018026, guid: 32da8c24b05295b4aa1640415cb668e1,
     type: 2}
   damage: 7

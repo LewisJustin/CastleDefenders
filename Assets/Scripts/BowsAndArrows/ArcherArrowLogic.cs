@@ -23,6 +23,7 @@ public class ArcherArrowLogic : MonoBehaviour {
 	{
 		transform.GetComponent<Rigidbody2D>().freezeRotation = true;
 		transform.GetComponent<Rigidbody2D>().velocity = Vector2.zero;
+		transform.GetComponent<Rigidbody2D>().constraints = RigidbodyConstraints2D.FreezePosition;
 	}
 
 }

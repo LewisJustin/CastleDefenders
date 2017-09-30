@@ -8,6 +8,7 @@ public class EnemyLogic : MonoBehaviour
 	[SerializeField] public bool ranged;
 	[SerializeField] private float speed;
 	[SerializeField] private Transform coinDrop;
+	[SerializeField] private Transform powerUp;
 	[SerializeField] private Rigidbody2D archerArrow;
     [SerializeField] public int damage;
     [SerializeField] public int health;
@@ -87,6 +88,11 @@ public class EnemyLogic : MonoBehaviour
 				DropCoin();
 			}
 
+			if(Random.Range(0, 5) == 1)
+			{
+				DropPowerUp();
+			}
+
             Destroy(gameObject);	
                 
         }
@@ -162,11 +168,11 @@ public class EnemyLogic : MonoBehaviour
 		{
 			if(goingRight)
 			{
-				// Rigidbody2D newArrow = Instantiate(archerArrow, new Vector3 (3,-3,0), Quaternion.Euler(transform.rotation.x, transform.rotation.y - 180f, transform.rotation.z));
+				Rigidbody2D newArrow = Instantiate(archerArrow, new Vector3 (transform.position.x + .5f,-3,0), Quaternion.Euler(transform.rotation.x, transform.rotation.y - 180f, transform.rotation.z));
 
-				// newArrow.name = "Enemy Arrow";
+				newArrow.name = "Enemy Arrow";
 
-				// newArrow.velocity = transform.TransformDirection(Vector3.right * 20);
+				newArrow.velocity = transform.TransformDirection(Vector3.right * 20);
 
 				GameManager.GetComponent<GameLogic>().castleTakeDamage(damage);
 
@@ -174,11 +180,11 @@ public class EnemyLogic : MonoBehaviour
 			}
 			else
 			{
-				// Rigidbody2D newArrow = Instantiate(archerArrow, new Vector3 (13.5f,-3,0), Quaternion.Euler(transform.rotation.x, transform.rotation.y, transform.rotation.z));
+				Rigidbody2D newArrow = Instantiate(archerArrow, new Vector3 (transform.position.x - .5f,-3,0), Quaternion.Euler(transform.rotation.x, transform.rotation.y, transform.rotation.z));
 
-				// newArrow.name = "Enemy Arrow";
+				newArrow.name = "Enemy Arrow";
 
-				// newArrow.velocity = transform.TransformDirection(Vector3.left * 20);
+				newArrow.velocity = transform.TransformDirection(Vector3.left * 20);
 
 				GameManager.GetComponent<GameLogic>().castleTakeDamage(damage);
 
@@ -196,6 +202,11 @@ public class EnemyLogic : MonoBehaviour
 	private void DropCoin()
 	{
 		Instantiate(coinDrop, transform.position, transform.rotation);
+	}
+
+	private void DropPowerUp()
+	{
+		Instantiate(powerUp, transform.position, transform.rotation);
 	}
 
 }
