@@ -14,6 +14,8 @@ public class GameLogic : MonoBehaviour
     public int waveNumber;
     public int castleArmour;
     public bool Dead = false;
+
+    private float trueArmor;
     #endregion
 
     #region GameObjectReferences
@@ -52,9 +54,15 @@ public class GameLogic : MonoBehaviour
 
     public void castleTakeDamage(int damage)
     {
-        castleHealth -= (damage - castleArmour);
-    }
+        trueArmor = ((castleArmour * 10 * 0.3f)/100);
 
+        if (trueArmor > .85f)
+        {
+            trueArmor = .85f;
+        }
+
+        castleHealth -= (damage * trueArmor);
+    }
     private void die(int _waveNumber)
     {
         Dead = true;
