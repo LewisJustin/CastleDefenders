@@ -44,7 +44,7 @@ public class BowLogic : MonoBehaviour {
 				projectile.velocity = transform.TransformDirection(Vector3.right * (arrowSpeed/2));
 		}
 
-        if (Input.GetMouseButton(0) && canShoot == true)
+        if (Input.GetMouseButton(0) && canShoot == true && !transform.GetComponent<BowAI>().AIEnabled)
         {
             animator.SetBool("isCharging", true);
         }

@@ -7,21 +7,14 @@ public class RayCasting : MonoBehaviour {
 	public LayerMask toHit;
 	public LayerMask castleLayer;
 	public float distanceBetweenEnemies;
-
-	Transform firePoint;
+	
 	
 	void Start ()
 	{
-		firePoint = transform;
-		if(firePoint == null)
-		{
-			Debug.LogError("No firepoint");
-		}
 		if(!transform.parent.GetComponent<EnemyLogic>().goingRight)
 		{
 			transform.position = new Vector3(transform.position.x - 1f, transform.position.y, transform.position.z);
 		}
-			
 
 		StartCoroutine(Shoot());
 	}
@@ -37,36 +30,37 @@ public class RayCasting : MonoBehaviour {
 			if(transform.parent.GetComponent<EnemyLogic>().goingRight)
 			{
 				enemiesHit = Physics2D.Raycast(transform.position, Vector2.right, distanceBetweenEnemies, toHit);
+
+				if(transform.parent.GetComponent<EnemyLogic>().ranged)
+				{
+					castleHit = Physics2D.Raycast(transform.position, Vector2.right, transform.parent.GetComponent<EnemyLogic>().stoppingDistanceRanged, castleLayer);
+				}
+				else
+				{
+					castleHit = Physics2D.Raycast(transform.position, Vector2.right, transform.parent.GetComponent<EnemyLogic>().stoppingDistanceMelee, castleLayer);
+				}
 			}
 			else
 			{
 				enemiesHit = Physics2D.Raycast(transform.position, Vector2.left, distanceBetweenEnemies, toHit);
-			}
 
-			// going right and not ranged
-			if(transform.parent.GetComponent<EnemyLogic>().goingRight && !transform.parent.GetComponent<EnemyLogic>().ranged)
-			{
-				castleHit = Physics2D.Raycast(transform.position, Vector2.right, transform.parent.GetComponent<EnemyLogic>().stoppingDistanceMelee, castleLayer);
-			}
-			// going right and ranged
-			else if(transform.parent.GetComponent<EnemyLogic>().goingRight && transform.parent.GetComponent<EnemyLogic>().ranged)
-			{
-				castleHit = Physics2D.Raycast(transform.position, Vector2.right, transform.parent.GetComponent<EnemyLogic>().stoppingDistanceRanged, castleLayer);
-			}
-			//going left and not ranged
-			else if(!transform.parent.GetComponent<EnemyLogic>().goingRight && !transform.parent.GetComponent<EnemyLogic>().ranged)
-			{
-				castleHit = Physics2D.Raycast(transform.position, Vector2.left, transform.parent.GetComponent<EnemyLogic>().stoppingDistanceMeleeLeft, castleLayer);
-			}
-			//going left and ranged
-			else
-			{
-				castleHit = Physics2D.Raycast(transform.position, Vector2.left, transform.parent.GetComponent<EnemyLogic>().stoppingDistanceRangedLeft, castleLayer);
+				if(transform.parent.GetComponent<EnemyLogic>().ranged)
+				{
+					castleHit = Physics2D.Raycast(transform.position, Vector2.left, transform.parent.GetComponent<EnemyLogic>().stoppingDistanceRanged, castleLayer);
+				}
+				else
+				{
+					castleHit = Physics2D.Raycast(transform.position, Vector2.left, transform.parent.GetComponent<EnemyLogic>().stoppingDistanceMelee, castleLayer);
+				}
 			}
 
 			if(castleHit.collider != null)
 			{
 				transform.parent.GetComponent<EnemyLogic>().hasArrived = true;
+			}
+			else
+			{
+				transform.parent.GetComponent<EnemyLogic>().hasArrived = false;
 			}
 
 			if(enemiesHit.collider != null)

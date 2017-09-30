@@ -5,6 +5,8 @@ using UnityEngine;
 [RequireComponent(typeof(GameLogic))]
 public class WaveSpawner : MonoBehaviour
 {
+	public Transform archer;
+	public Transform swordsman;
 
 	private bool hasBeenRewardedThisRound = false;
 
@@ -46,6 +48,9 @@ public class WaveSpawner : MonoBehaviour
 		}
 		GetComponent<GameLogic>().currency += 100;
 		hasBeenRewardedThisRound = true;
+
+		archer.GetComponent<EnemyLogic>().damage = 7;
+		swordsman.GetComponent<EnemyLogic>().damage = 7;
 	}
 
 	private void Awake()
@@ -81,6 +86,9 @@ public class WaveSpawner : MonoBehaviour
 			//Reset nextWave variable
 			if(nextWave + 1 > waves.Length - 1)
 			{
+				archer.GetComponent<EnemyLogic>().damage += 2;
+				swordsman.GetComponent<EnemyLogic>().damage += 2;
+
 				nextWave = 0;
 			}
 			else

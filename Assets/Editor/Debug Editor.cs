@@ -5,10 +5,10 @@ using System.Collections.Generic;
 public class DebugEditor : EditorWindow
 {
 	List<GameObject> enemies;
-	public Transform[] prefabs = new Transform[2];
 	private GameObject arrowPrefab;
 
 	int hSliderValue;
+	int healthSliderValue;
 	public string coinsToAdd;
 
 	[MenuItem("Window/Debug")]
@@ -59,26 +59,25 @@ public class DebugEditor : EditorWindow
 				GameObject.Find("GameManager").GetComponent<GameLogic>().castleArmour += 5;
 			}
 
-		GUILayout.Label("Archer, then Swordsman");
-		for (int i = 0; i < 2; i++)
-		{
-			prefabs[i] = (Transform)EditorGUILayout.ObjectField(prefabs[i], typeof(Transform), false);
-		}
+		GUILayout.Label("Health");
+		healthSliderValue = (int)GUILayout.HorizontalSlider(healthSliderValue, 0f, GameObject.Find("GameManager").GetComponent<GameLogic>().castleMaxHealth);
 
+		GameObject.Find("GameManager").GetComponent<GameLogic>().castleHealth = healthSliderValue;
+		
 		GUILayout.Label("Enemies", EditorStyles.boldLabel);
 		hSliderValue = (int)GUILayout.HorizontalSlider(hSliderValue, 0f, 2f);
 
-		if(GUILayout.Button("Spawn Bow Man") && Application.isPlaying)
+		if(GUILayout.Button("Spawn Archer") && Application.isPlaying)
 		{
-			GameObject.Find("GameManager").GetComponent<WaveSpawner>().SpawnIndividualEnemy(hSliderValue, prefabs[0]);
+			GameObject.Find("GameManager").GetComponent<WaveSpawner>().SpawnIndividualEnemy(hSliderValue, GameObject.Find("GameManager").GetComponent<WaveSpawner>().archer);
 		}
 		if(GUILayout.Button("Spawn Swordsman") && Application.isPlaying)
 		{
-			GameObject.Find("GameManager").GetComponent<WaveSpawner>().SpawnIndividualEnemy(hSliderValue, prefabs[1]);
+			GameObject.Find("GameManager").GetComponent<WaveSpawner>().SpawnIndividualEnemy(hSliderValue, GameObject.Find("GameManager").GetComponent<WaveSpawner>().swordsman);
 		}
-		if(GUILayout.Button("Spawn Dragon") && Application.isPlaying)
+		if(GUILayout.Button("Spawn Dragon"))
 		{
-			Debug.Log("Spawn Dragon");
+			Debug.Log("Happyman gave up :(");
 		}
 
 		EditorGUILayout.EndScrollView();

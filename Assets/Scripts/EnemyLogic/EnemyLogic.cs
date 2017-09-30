@@ -19,11 +19,8 @@ public class EnemyLogic : MonoBehaviour
 	[HideInInspector]public bool canMove = true;
 	[HideInInspector]public bool hasArrived;
     [HideInInspector]private float OriginalSpeed;
-
-	[HideInInspector] public float stoppingDistanceRanged;
-	[HideInInspector] public float stoppingDistanceMelee;
-	[HideInInspector] public float stoppingDistanceRangedLeft;
-	[HideInInspector] public float stoppingDistanceMeleeLeft;
+	public float stoppingDistanceRanged;
+	public float stoppingDistanceMelee;
 	#endregion
 
 	public enum EnemyState {MOVING, WAITING, ATTACKING}
@@ -34,6 +31,8 @@ public class EnemyLogic : MonoBehaviour
 
 	private bool delay;
 
+	private bool startedAttacking;
+
 	private void Awake()
 	{
 		hasArrived = false;
@@ -42,11 +41,10 @@ public class EnemyLogic : MonoBehaviour
         GameManager = GameObject.Find("GameManager");
         animator = GetComponent<Animator>();    
 		canMove = true; 
+		stoppingDistanceRanged = 3f;
+		stoppingDistanceMelee = .25f;
 
-		stoppingDistanceRanged = 1f;
-		stoppingDistanceMelee = 0f;
-		stoppingDistanceRangedLeft = 3f;
-		stoppingDistanceMeleeLeft = 0f;
+		startedAttacking = false;
 	}
 
 	public void SetDirection()
@@ -59,7 +57,7 @@ public class EnemyLogic : MonoBehaviour
 
 	void Update()
 	{
-		//prevents bunching at spawn
+		//prevents bunching at spawn and makes them face correct direction
 		if (goingRight)
 		{
 			if (transform.position.x < -35)
@@ -69,11 +67,11 @@ public class EnemyLogic : MonoBehaviour
 
 			transform.GetComponent<SpriteRenderer>().flipX = false;
 		}
-		if(!goingRight)
+		else
 		{
-			if (transform.position.x > 30)
+			if (transform.position.x > 35)
 				speed = 20f;
-			else if (transform.position.x <= 30)
+			else if (transform.position.x <= 35)
 				speed = OriginalSpeed;
 
 			transform.GetComponent<SpriteRenderer>().flipX = true;
@@ -94,7 +92,7 @@ public class EnemyLogic : MonoBehaviour
         }
 
 		#region GettingToLocation
-		if(!hasArrived && !ranged )
+		if(!hasArrived)
 		{
 			if(canMove)
 			{
@@ -109,53 +107,18 @@ public class EnemyLogic : MonoBehaviour
 				state = EnemyState.WAITING;
 			}
 		}
-		else
+		if(hasArrived && !startedAttacking)
 		{
+			startedAttacking = true;
+
 			state = EnemyState.ATTACKING;
-			StartCoroutine(StartAttackingMelee());
-		}
-
-		if (ranged && !hasArrived && goingRight)
-		{
-			if (transform.position.x < 1f)
+			if(!ranged)
 			{
-				if(canMove)
-				{
-					transform.Translate(Vector3.right * speed * Time.deltaTime);
-					state = EnemyState.MOVING;
-				}
-				else
-				{
-					state = EnemyState.WAITING;
-				}
+				StartCoroutine(StartAttackingMelee());
 			}
 			else
 			{
 				StartCoroutine(StartAttackingRanged());
-				hasArrived = true;
-				state = EnemyState.ATTACKING;
-			}
-		}
-
-		if (ranged && !hasArrived && !goingRight)
-		{
-			if (transform.position.x > 14f)
-			{
-				if(canMove)
-				{
-					transform.Translate(Vector3.left * speed * Time.deltaTime);
-					state = EnemyState.MOVING;
-				}
-				else
-				{
-					state = EnemyState.WAITING;
-				}
-			}
-			else
-			{
-				StartCoroutine(StartAttackingRanged());
-				hasArrived = true;
-				state = EnemyState.ATTACKING;
 			}
 		}
 		#endregion
@@ -199,11 +162,11 @@ public class EnemyLogic : MonoBehaviour
 		{
 			if(goingRight)
 			{
-				Rigidbody2D newArrow = Instantiate(archerArrow, new Vector3 (3,-3,0), Quaternion.Euler(transform.rotation.x, transform.rotation.y - 180f, transform.rotation.z));
+				// Rigidbody2D newArrow = Instantiate(archerArrow, new Vector3 (3,-3,0), Quaternion.Euler(transform.rotation.x, transform.rotation.y - 180f, transform.rotation.z));
 
-				newArrow.name = "Enemy Arrow";
+				// newArrow.name = "Enemy Arrow";
 
-				newArrow.velocity = transform.TransformDirection(Vector3.right * 20);
+				// newArrow.velocity = transform.TransformDirection(Vector3.right * 20);
 
 				GameManager.GetComponent<GameLogic>().castleTakeDamage(damage);
 
@@ -211,11 +174,11 @@ public class EnemyLogic : MonoBehaviour
 			}
 			else
 			{
-				Rigidbody2D newArrow = Instantiate(archerArrow, new Vector3 (13.5f,-3,0), Quaternion.Euler(transform.rotation.x, transform.rotation.y, transform.rotation.z));
+				// Rigidbody2D newArrow = Instantiate(archerArrow, new Vector3 (13.5f,-3,0), Quaternion.Euler(transform.rotation.x, transform.rotation.y, transform.rotation.z));
 
-				newArrow.name = "Enemy Arrow";
+				// newArrow.name = "Enemy Arrow";
 
-				newArrow.velocity = transform.TransformDirection(Vector3.left * 20);
+				// newArrow.velocity = transform.TransformDirection(Vector3.left * 20);
 
 				GameManager.GetComponent<GameLogic>().castleTakeDamage(damage);
 
