@@ -4,12 +4,14 @@ using System.Collections.Generic;
 
 public class DebugEditor : EditorWindow
 {
-	List<GameObject> enemies;
 	private GameObject arrowPrefab;
 
 	int hSliderValue;
 	int healthSliderValue;
 	public string coinsToAdd;
+
+	bool foldoutCheating = true;
+	bool foldoutEnemies = true;
 
 	[MenuItem("Window/Debug")]
 	public static void ShowWindow()
@@ -21,8 +23,14 @@ public class DebugEditor : EditorWindow
 	{
 		scrollPos = EditorGUILayout.BeginScrollView(scrollPos);
 
-		GUILayout.Label("Cheat Mode", EditorStyles.boldLabel);
-		GUILayout.BeginHorizontal();
+		foldoutCheating = EditorGUILayout.Foldout(foldoutCheating, "Cheat mode");
+
+		if(foldoutCheating)
+		{
+			GUILayout.Label("Put arrow here");
+			arrowPrefab = (GameObject)EditorGUILayout.ObjectField(arrowPrefab, typeof(GameObject), false);
+	
+			GUILayout.BeginHorizontal();
 
 			coinsToAdd = EditorGUILayout.TextField(coinsToAdd, GUILayout.Width(30), GUILayout.Height(20));
 
@@ -38,11 +46,8 @@ public class DebugEditor : EditorWindow
 			{
 				GameObject.Find("GameManager").GetComponent<GameLogic>().currency -= n;
 			}
-		GUILayout.EndHorizontal();
-
-			GUILayout.Label("Put arrow here");
-			arrowPrefab = (GameObject)EditorGUILayout.ObjectField(arrowPrefab, typeof(GameObject), false);
-
+			
+			GUILayout.EndHorizontal();
 
 			if (GUILayout.Button("Bow Speed! (lowest speed)"))
 			{
@@ -59,26 +64,34 @@ public class DebugEditor : EditorWindow
 				GameObject.Find("GameManager").GetComponent<GameLogic>().castleArmour += 5;
 			}
 
-		GUILayout.Label("Health");
-		healthSliderValue = (int)GUILayout.HorizontalSlider(healthSliderValue, 0f, GameObject.Find("GameManager").GetComponent<GameLogic>().castleMaxHealth);
+			GUILayout.Label("Health");
+			healthSliderValue = (int)GUILayout.HorizontalSlider(healthSliderValue, 0f, GameObject.Find("GameManager").GetComponent<GameLogic>().castleMaxHealth);
 
-		GameObject.Find("GameManager").GetComponent<GameLogic>().castleHealth = healthSliderValue;
+			GameObject.Find("GameManager").GetComponent<GameLogic>().castleHealth = healthSliderValue;
+			
+		}
+
+		foldoutEnemies = EditorGUILayout.Foldout(foldoutEnemies, "Enemies");
+
+		if(foldoutEnemies)
+		{
+			hSliderValue = (int)GUILayout.HorizontalSlider(hSliderValue, 0f, 2f);
+
+			if(GUILayout.Button("Spawn Archer") && Application.isPlaying)
+			{
+				GameObject.Find("GameManager").GetComponent<WaveSpawner>().SpawnIndividualEnemy(hSliderValue, GameObject.Find("GameManager").GetComponent<WaveSpawner>().archer);
+			}
+			if(GUILayout.Button("Spawn Swordsman") && Application.isPlaying)
+			{
+				GameObject.Find("GameManager").GetComponent<WaveSpawner>().SpawnIndividualEnemy(hSliderValue, GameObject.Find("GameManager").GetComponent<WaveSpawner>().swordsman);
+			}
+			if(GUILayout.Button("Spawn Dragon"))
+			{
+				Debug.Log("Happyman is slow....");
+			}
+		}
+
 		
-		GUILayout.Label("Enemies", EditorStyles.boldLabel);
-		hSliderValue = (int)GUILayout.HorizontalSlider(hSliderValue, 0f, 2f);
-
-		if(GUILayout.Button("Spawn Archer") && Application.isPlaying)
-		{
-			GameObject.Find("GameManager").GetComponent<WaveSpawner>().SpawnIndividualEnemy(hSliderValue, GameObject.Find("GameManager").GetComponent<WaveSpawner>().archer);
-		}
-		if(GUILayout.Button("Spawn Swordsman") && Application.isPlaying)
-		{
-			GameObject.Find("GameManager").GetComponent<WaveSpawner>().SpawnIndividualEnemy(hSliderValue, GameObject.Find("GameManager").GetComponent<WaveSpawner>().swordsman);
-		}
-		if(GUILayout.Button("Spawn Dragon"))
-		{
-			Debug.Log("Happyman gave up :(");
-		}
 
 		EditorGUILayout.EndScrollView();
 	}

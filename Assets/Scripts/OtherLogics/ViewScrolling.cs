@@ -9,10 +9,10 @@ public class ViewScrolling : MonoBehaviour
 			if(transform.position.x <= 10 && transform.position.x >= -10)
 				transform.Translate(new Vector3 (-Input.GetAxis("Mouse ScrollWheel") * 500f * Time.deltaTime, 0f,0f));
 
-			if (transform.position.x < -10)
+			if (transform.position.x <= -10)
 				transform.Translate(new Vector3(.1f, 0f, 0f));
 
-			if (transform.position.x > 20)
+			if (transform.position.x >= 10)
 				transform.Translate(new Vector3(-.1f, 0f, 0f));
 		}
 	}
