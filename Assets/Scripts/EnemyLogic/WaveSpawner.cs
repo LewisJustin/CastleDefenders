@@ -8,6 +8,7 @@ public class WaveSpawner : MonoBehaviour
 	public Transform archer;
 	public Transform swordsman;
 
+
 	private bool hasBeenRewardedThisRound = false;
 
 	[SerializeField] GameObject storePanel;
@@ -191,3 +192,4 @@ public class WaveSpawner : MonoBehaviour
 	}
 
 }
+//Sander was here

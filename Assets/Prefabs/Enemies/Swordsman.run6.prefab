@@ -132,7 +132,7 @@ MonoBehaviour:
   powerUp: {fileID: 4249429107046692, guid: 265cbb1ee824d014b80172d409b92a89, type: 2}
   archerArrow: {fileID: 50688467181018026, guid: 32da8c24b05295b4aa1640415cb668e1,
     type: 2}
-  damage: 15
+  damage: 7
   health: 100
   animator: {fileID: 95725516715986660}
   canMove: 1
