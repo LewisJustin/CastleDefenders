@@ -6,7 +6,7 @@ public class EnemyLogic : MonoBehaviour
 
 	#region SerializeVariables
 	[SerializeField] public bool ranged;
-	[SerializeField] private float speed;
+	public float speed;
 	[SerializeField] private Transform coinDrop;
 	[SerializeField] private Transform powerUp;
 	[SerializeField] private Rigidbody2D archerArrow;
