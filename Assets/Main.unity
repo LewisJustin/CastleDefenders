@@ -2334,7 +2334,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 1114.1465, y: -261.3501}
+  m_AnchoredPosition: {x: 1002.48334, y: -261.3501}
   m_SizeDelta: {x: 276.4, y: 51}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &734441180
@@ -3362,7 +3362,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 421.54688, y: -261.3501}
+  m_AnchoredPosition: {x: 309.8838, y: -261.3501}
   m_SizeDelta: {x: 276.4, y: 51}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1007402626
@@ -4019,7 +4019,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   castleMaxHealth: 100
-  castleHealth: 100
+  castleHealth: 0
   currency: 1000
   waveNumber: 0
   castleArmour: 10
@@ -4041,6 +4041,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   archer: {fileID: 4688335588227230, guid: e8877924b2e992447a589adb55d49d4e, type: 2}
   swordsman: {fileID: 4544439514759020, guid: a89c62b741551564c8e318997a1e0bb3, type: 2}
+  dragon: {fileID: 4336578705083504, guid: e59082deb148e7c45bac66854e8bf4d8, type: 2}
   storePanel: {fileID: 1228304916}
   saveButton: {fileID: 734312886}
   loadButton: {fileID: 265720939}
@@ -5982,7 +5983,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 767.8467, y: -261.3501}
+  m_AnchoredPosition: {x: 656.1836, y: -261.3501}
   m_SizeDelta: {x: 276.4, y: 51}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2091021483

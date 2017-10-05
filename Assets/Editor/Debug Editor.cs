@@ -11,14 +11,12 @@ public class DebugEditor : EditorWindow
 	public string coinsToAdd;
 	private string statToAdd;
 
-	private GameObject enemyParent;
-
-	List<Transform> enemies;
+	List<GameObject> enemies;
 
 	bool foldoutCheating = true;
 	bool foldoutEnemies = true;
-	bool foldoutSoftChangeEnemies = true;
 	bool foldoutHardChangeEnemies = true;
+	bool foldoutSoftChangeEnemies = true;
 
 	private Transform archer;
 	private Transform swordsman;
@@ -97,36 +95,7 @@ public class DebugEditor : EditorWindow
 				}
 				if(GUILayout.Button("Spawn Dragon"))
 				{
-					Debug.Log("Happyman is slow....");
-				}
-			}
-
-			foldoutSoftChangeEnemies = EditorGUILayout.Foldout(foldoutSoftChangeEnemies, "Change Current Enemy Stats");
-
-			if(foldoutSoftChangeEnemies)
-			{
-				enemyParent = GameObject.Find("EnemyParent");
-
-				if(GUILayout.Button("Refresh Enemies") && Application.isPlaying);
-				{
-					enemies.Clear();
-
-					if(enemyParent.transform.childCount == 0)
-					{
-						Debug.Log("No enemies");
-					}
-					else
-					{
-						for(int i = 0; i < enemyParent.transform.childCount; i++)
-						{
-							enemies.Add(enemyParent.transform.GetChild(i));
-						}
-					}
-				}
-
-				foreach(Transform enemy in enemies)
-				{
-					GUILayout.Label(enemy.gameObject.name);
+					GameObject.Find("GameManager").GetComponent<WaveSpawner>().SpawnIndividualEnemy(hSliderValue, GameObject.Find("GameManager").GetComponent<WaveSpawner>().dragon);
 				}
 			}
 
@@ -192,6 +161,23 @@ public class DebugEditor : EditorWindow
 				EditorGUILayout.EndHorizontal();
 			}
 
+			foldoutSoftChangeEnemies = EditorGUILayout.Foldout(foldoutSoftChangeEnemies, "change current enemies");
+
+			if(foldoutSoftChangeEnemies)
+			{
+				if(GUILayout.Button("refresh enemies"))
+				{
+					enemies.Clear();
+					if(GameObject.Find("EnemyParent").transform.childCount >= 1)
+					{
+						Debug.Log("Yay");
+					}
+					else
+					{
+						Debug.Log("Boo");
+					}
+				}
+			}
 		EditorGUILayout.EndScrollView();
 	}
 }

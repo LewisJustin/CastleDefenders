@@ -7,6 +7,7 @@ public class WaveSpawner : MonoBehaviour
 {
 	public Transform archer;
 	public Transform swordsman;
+	public Transform dragon;
 
 
 	private bool hasBeenRewardedThisRound = false;
