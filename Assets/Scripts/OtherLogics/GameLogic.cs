@@ -15,6 +15,8 @@ public class GameLogic : MonoBehaviour
     public int castleArmour;
     public bool Dead = false;
 
+    public ParticleSystem explosionSystem;
+
     private float trueArmor;
     #endregion
 
@@ -29,6 +31,7 @@ public class GameLogic : MonoBehaviour
     {
         castleHealth = castleMaxHealth;
         currency = 0;
+        explosionSystem.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -68,6 +71,8 @@ public class GameLogic : MonoBehaviour
         Dead = true;
         audioManager.GetComponent<AudioManager>().Play("CastleDestroy");
         Debug.Log("Died on wave " + _waveNumber);
+        explosionSystem.gameObject.SetActive(true);
+        explosionSystem.Play(true);
     }
 }
 
