@@ -14,7 +14,7 @@ public class BowAI : MonoBehaviour {
 	void Start()
 	{
 		StartCoroutine(pullArrow());
-		AIEnabled = true;
+		AIEnabled = false;
 	}
 
 	void Update ()
